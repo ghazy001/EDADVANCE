@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                script {
+                    sh 'npm install'  // Install npm dependencies
+                }
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'npm test'  // Run unit tests
+                }
+            }
+        }
+
+        stage('Build application') {
+            steps {
+                script {
+                    sh 'npm run build-dev'  // Build the application in development mode
+                }
+            }
+        }
+    }
+}
