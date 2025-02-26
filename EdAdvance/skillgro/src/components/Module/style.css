@@ -1,0 +1,129 @@
+/* Global Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Title Section */
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #34495e;
+    margin-top: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  /* Module List Container */
+  .module-list-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* List of Modules */
+  .module-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Module Card Styling */
+  .module-item {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ecf0f1;
+  }
+  
+  .module-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .module-item-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .module-item-title:hover {
+    color: #3498db;
+  }
+  
+  .module-item-description {
+    font-size: 1rem;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    height: 100px; /* Fixed height to prevent overflow */
+    overflow: hidden;
+  }
+  
+  .module-item-button {
+    background-color: #ffc107;
+    color: rgb(9, 9, 9);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+  
+  .module-item-button:hover {
+    background-color: #ffc107;
+    transform: scale(1.05);
+  }
+  
+  /* Add Gradient Effect to the Card */
+  .module-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.2));
+    z-index: -1;
+    transition: background 0.3s ease;
+  }
+  
+  .module-item:hover:before {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.3));
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .module-list-container {
+      padding: 25px;
+    }
+  
+    h2 {
+      font-size: 2rem;
+    }
+  
+    .module-item-title {
+      font-size: 1.6rem;
+    }
+  
+    .module-item-description {
+      font-size: 0.9rem;
+    }
+  }
+  
