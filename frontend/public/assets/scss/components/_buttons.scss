@@ -1,0 +1,152 @@
+@use '../utils' as *;
+
+/*=============================
+	1. Button style
+===============================*/
+.tg-button-wrap {
+    @include flexbox();
+}
+.btn {
+    user-select: none;
+    -moz-user-select: none;
+    background: var(--tg-theme-primary) none repeat scroll 0 0;
+    border: medium none;
+    color: var(--tg-common-color-white);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: var(--tg-fw-semi-bold);
+    font-family: var(--tg-heading-font-family);
+    letter-spacing: 0;
+    line-height: 1.12;
+    margin-bottom: 0;
+    padding: 16px 30px;
+    text-align: center;
+    text-transform: capitalize;
+    touch-action: manipulation;
+    @include transition(.3s);
+    vertical-align: middle;
+    @include border-radius(50px);
+    white-space: nowrap;
+    box-shadow: 4px 6px 0px 0px var(--tg-common-color-blue);
+    overflow: hidden;
+    &:hover,
+    &:focus-visible {
+        background: var(--tg-theme-secondary);
+        color: var(--tg-heading-color);
+        box-shadow: 0 0 0 0 var(--tg-common-color-blue);
+    }
+    & .text {
+        display: block;
+    }
+    &.tg-svg {
+        @include flexbox();
+        align-items: center;
+        gap: 10px;
+    }
+    & .svg-icon {
+        width: 14px;
+        display: block;
+        margin-top: -3px;
+    }
+    &.btn-border {
+        background: var(--tg-common-color-white);
+        border: 1px solid var(--tg-theme-primary);
+        color: var(--tg-theme-primary);
+        padding: 19px 23px 16px 23px;
+        & svg path {
+            stroke: var(--tg-theme-primary);
+        }
+        &:focus-visible,
+        &:hover {
+            background: var(--tg-theme-primary);
+            color: var(--tg-common-color-white);
+            & svg path {
+                stroke: var(--tg-common-color-white)
+            }
+        }
+    }
+    &.white-btn {
+        background: var(--tg-common-color-white);
+        color: var(--tg-theme-secondary);
+        & svg path {
+            stroke: var(--tg-theme-secondary);
+        }
+    }
+    &-two {
+        background: var(--tg-theme-secondary);
+        border: 2px solid var(--tg-common-color-black-3);
+        @include box-shadow(4px 4px 0px 0px #3D3D3D);
+        color: var(--tg-common-color-black-3);
+        & svg {
+            color: var(--tg-common-color-black-3) !important;
+        }
+        &:hover,
+        &:focus-visible {
+            background: var(--tg-theme-primary);
+            color: var(--tg-common-color-white);
+            box-shadow: 0 0 0 0 var(--tg-common-color-blue);
+            border-color: var(--tg-theme-primary);
+            & svg {
+                color: var(--tg-common-color-white) !important;
+            }
+        }
+    }
+    &-three {
+        background: var(--tg-theme-secondary);
+        box-shadow: none;
+        color: var(--tg-common-color-black-3) !important;
+        & svg {
+            color: var(--tg-common-color-black-3) !important;
+        }
+    }
+    &-four {
+        box-shadow: none;
+        @include border-radius(8px);
+    }
+}
+
+.arrow-btn {
+    --arrow-hover-move-x: -110%;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: .3s linear;
+    & svg {
+        color: var(--tg-common-color-white);
+        width: 15px;
+        transition: all 0.3s ease-out 0s;
+        transform: translateY(-1px);
+        & path {
+            transition: transform .38s cubic-bezier(.37, .08, .02, .93), opacity .18s ease-out;
+            &:nth-of-type(1) {
+                transform: translateX(0);
+                opacity: 1;
+                transition-delay: .15s, .15s;
+            }
+            &:nth-of-type(2) {
+                transform: translateX(calc(1 * var(--arrow-hover-move-x)));
+                opacity: .5;
+                transition-delay: 0s, 0s;
+            }
+        }
+    }
+    &:focus-visible,
+    &:hover {
+        & svg {
+            color: var(--tg-heading-color);
+            & path {
+                &:nth-of-type(1) {
+                    transform: translateX(calc(-1 * var(--arrow-hover-move-x)));
+                    opacity: 0;
+                    transition-delay: 0s, 0s;
+                }
+                &:nth-of-type(2) {
+                    transform: translateX(0) translateY(0);
+                    opacity: 1;
+                    transition-delay: .15s, .15s;
+                }
+            }
+        }
+    }
+}

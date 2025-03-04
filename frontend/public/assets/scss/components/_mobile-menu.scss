@@ -1,0 +1,369 @@
+@use '../utils' as *;
+
+/*=============================
+	03. Mobile Menu
+===============================*/
+.tgmobile {
+    &__search {
+        padding: 0 20px 25px 25px;
+        & form {
+            position: relative;
+        }
+        & input {
+            display: block;
+            width: 100%;
+            border: none;
+            padding: 10px 45px 10px 20px;
+            font-size: 15px;
+            height: 45px;
+            background: var(--tg-common-color-gray);
+            @include border-radius(4px);
+            &::placeholder {
+                font-size: 15px;
+                color: var(--tg-body-color);
+            }
+        }
+        & button {
+            position: absolute;
+            top: 50%;
+            @include transform(translateY(-50%));
+            border: none;
+            padding: 0;
+            right: 20px;
+            line-height: 1;
+            background: transparent;
+            color: var(--tg-heading-color);
+        }
+    }
+    &__menu {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 300px;
+        padding-right: 30px;
+        max-width: 100%;
+        height: 100%;
+        z-index: 99;
+        border-radius: 0px;
+        transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -moz-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -ms-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)e;
+        -o-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        @include transform(translateX(101%));
+        & .navbar-collapse {
+            display: block !important;
+        }
+        & .nav-logo {
+            position: relative;
+            padding: 30px 25px;
+            text-align: left;
+            & img {
+                width: 150px;
+            }
+        }
+        & .navigation {
+            position: relative;
+            display: block;
+            width: 100%;
+            float: none;
+            margin: 0;
+            padding: 0;
+            & li {
+                position: relative;
+                display: block;
+                border-top: 1px solid rgb(0 0 0 / 10%);
+                &.active > a {
+                    color: var(--tg-theme-primary);
+                }
+                &.menu-item-has-children .dropdown-btn {
+                    position: absolute;
+                    right: 20px;
+                    top: 6px;
+                    width: 32px;
+                    height: 32px;
+                    text-align: center;
+                    font-size: 16px;
+                    line-height: 32px;
+                    color: var(--tg-heading-color);
+                    background: var(--tg-common-color-gray);
+                    cursor: pointer;
+                    border-radius: 2px;
+                    -webkit-transition: all 500ms ease;
+                    -o-transition: all 500ms ease;
+                    transition: all 500ms ease;
+                    z-index: 5;
+                    & .plus-line {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        -webkit-transform: translate(-50%, -50%) rotate(0);
+                        -ms-transform: translate(-50%, -50%) rotate(0);
+                        transform: translate(-50%, -50%) rotate(0);
+                        border-radius: 10px;
+                        width: 12px;
+                        height: 2px;
+                        background-color: var(--tg-common-color-black);
+                        -webkit-transition: all 500ms ease;
+                        -o-transition: all 500ms ease;
+                        transition: all 500ms ease;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            -webkit-transform: translate(-50%, -50%) rotate(0);
+                            -ms-transform: translate(-50%, -50%) rotate(0);
+                            transform: translate(-50%, -50%) rotate(0);
+                            border-radius: 10px;
+                            width: 2px;
+                            height: 12px;
+                            background-color: var(--tg-common-color-black);
+                            -webkit-transition: all 500ms ease;
+                            -o-transition: all 500ms ease;
+                            transition: all 500ms ease;
+                        }
+                    }
+                    &.open {
+                        background-color: var(--tg-theme-primary);
+                        & .plus-line {
+                            background-color: var(--tg-common-color-white);
+                            &::after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                & > a {
+                    position: relative;
+                    display: block;
+                    line-height: 1.5;
+                    padding: 10px 60px 10px 25px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: var(--tg-heading-color);
+                    text-transform: capitalize;
+                    -webkit-transition: all 500ms ease;
+                    -o-transition: all 500ms ease;
+                    transition: all 500ms ease;
+                    border: none;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 0;
+                        -webkit-transition: all 500ms ease;
+                        -o-transition: all 500ms ease;
+                        transition: all 500ms ease;
+                        width: 2px;
+                        background: var(--tg-theme-primary);
+                        pointer-events: none;
+                    }
+                }
+                & ul li {
+                    & > a {
+                        margin-left: 20px;
+                    }
+                    & ul li {
+                        & a {
+                           margin-left: 40px;
+                        }
+                        & ul li {
+                            & a {
+                                margin-left: 60px;
+                            }
+                        }
+                    }
+                }
+                & > ul {
+                    display: none;
+                    & > li > ul {
+                        display: none;
+                    }
+                }
+            }
+            & ul {
+                padding: 0;
+                margin: 0;
+                & li {
+                    & a {
+                        display: block;
+                    }
+                    & ul {
+                        & li {
+                            & > a {
+                                font-size: 16px;
+                                margin-left: 20px;
+                                text-transform: capitalize;
+                            }
+                        }
+                    }
+                }
+            }
+            &:last-child {
+                border-bottom: 1px solid rgb(0 0 0 / 10%);
+            }
+            & > li > ul > li:first-child {
+                border-top: 1px solid rgb(0 0 0 / 10%);
+            }
+            & > li {
+                &.active > a {
+                    &::before {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        & .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 28px;
+            line-height: 30px;
+            width: 35px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--tg-theme-primary);
+            cursor: pointer;
+            padding: 8px;
+            z-index: 10;
+            -webkit-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            & i[class^="flaticon-"]:before {
+                font-weight: var(--tg-fw-bold) !important;
+            }
+        }
+        &-backdrop {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            transition: all 700ms ease;
+            -moz-transition: all 700ms ease;
+            -webkit-transition: all 700ms ease;
+            -ms-transition: all 700ms ease;
+            -o-transition: all 700ms ease;
+            opacity: 0;
+            visibility: hidden;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        & .social-links ul {
+            @include flexbox();
+            position: relative;
+            text-align: center;
+            padding: 30px 20px 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            & li {
+                position: relative;
+                display: inline-block;
+                margin: 0px 6px 10px;
+                & a {
+                    @include flexbox();
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    position: relative;
+                    line-height: 32px;
+                    font-size: 16px;
+                    color: var(--tg-body-color);
+                    -webkit-transition: all 500ms ease;
+                    -o-transition: all 500ms ease;
+                    transition: all 500ms ease;
+                    border: 1px solid #efefef;
+                    border-radius: 3px;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    -ms-border-radius: 3px;
+                    -o-border-radius: 3px;
+                    &:hover {
+                        border-color: var(--tg-theme-primary);
+                        background: var(--tg-theme-primary);
+                        color: var(--tg-common-color-white);
+                    }
+                }
+            }
+        }
+        & .tgmenu__action {
+            padding: 0 0;
+            margin: 0 0;
+            & > ul {
+                margin: 0 0;
+                padding: 30px 20px 0;
+                justify-content: center;
+                gap: 0 15px;
+                & li {
+                    margin: 0 0;
+                }
+                & .header-btn {
+                    display: block;
+                }
+            }
+        }
+    }
+    &__menu-box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: var(--tg-common-color-white);
+        padding: 0px 0px;
+        z-index: 5;
+        box-shadow: -9px 0 14px 0px rgb(0 0 0 / 6%);
+    }
+    &__menu-outer {
+        & .mobile-nav-toggler {
+            position: relative;
+            float: right;
+            font-size: 40px;
+            line-height: 50px;
+            cursor: pointer;
+            display: none;
+            color: var(--tg-common-color-white);
+            margin-right: 30px;
+            top: 15px;
+        }
+    }
+}
+.mobile-menu-visible {
+    overflow: hidden;
+    & .tgmobile__menu {
+        @include transform(translateX(0%));
+        &-backdrop {
+            opacity: 1;
+            visibility: visible;
+        }
+        & .close-btn {
+            @include transform(rotate(360deg));
+        }
+    }
+}
+
+.tgmobile__menu .mega-menu > li > .mega-sub-menu {
+    display: flex !important;
+    flex-direction: column;
+    min-width: auto;
+    margin-left: 0 !important;
+}
+.tgmobile__menu .mega-menu > li:nth-child(3) {
+    display: none;
+}
+.tgmobile__menu .mega-menu > li > .mega-sub-menu a {
+    margin-left: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 10px 25px 10px 25px;
+}
+.tgmobile__menu .navigation li > .mega-menu > li .mega-sub-menu li:first-child {
+    border: none;
+}

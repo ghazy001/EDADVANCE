@@ -1,0 +1,105 @@
+@font-face {
+    font-family: "flaticon_skill_grow";
+    src: url("./flaticon_skill_grow.ttf?b804fdf7efe64078cf35502d1d7c3cc7") format("truetype"),
+url("./flaticon_skill_grow.woff?b804fdf7efe64078cf35502d1d7c3cc7") format("woff"),
+url("./flaticon_skill_grow.woff2?b804fdf7efe64078cf35502d1d7c3cc7") format("woff2"),
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_skill_grow !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-search:before {
+    content: "\f101";
+}
+.flaticon-search-1:before {
+    content: "\f102";
+}
+.flaticon-back:before {
+    content: "\f103";
+}
+.flaticon-arrow-right:before {
+    content: "\f104";
+}
+.flaticon-angle-right:before {
+    content: "\f105";
+}
+.flaticon-right:before {
+    content: "\f106";
+}
+.flaticon-scribble:before {
+    content: "\f107";
+}
+.flaticon-placeholder:before {
+    content: "\f108";
+}
+.flaticon-map:before {
+    content: "\f109";
+}
+.flaticon-calendar:before {
+    content: "\f10a";
+}
+.flaticon-calendar-1:before {
+    content: "\f10b";
+}
+.flaticon-clock:before {
+    content: "\f10c";
+}
+.flaticon-book:before {
+    content: "\f10d";
+}
+.flaticon-shopping-cart:before {
+    content: "\f10e";
+}
+.flaticon-mortarboard:before {
+    content: "\f10f";
+}
+.flaticon-user:before {
+    content: "\f110";
+}
+.flaticon-user-1:before {
+    content: "\f111";
+}
+.flaticon-graphic-design:before {
+    content: "\f112";
+}
+.flaticon-email:before {
+    content: "\f113";
+}
+.flaticon-investment:before {
+    content: "\f114";
+}
+.flaticon-profit:before {
+    content: "\f115";
+}
+.flaticon-fashion:before {
+    content: "\f116";
+}
+.flaticon-web-design:before {
+    content: "\f117";
+}
+.flaticon-data-management:before {
+    content: "\f118";
+}
+.flaticon-interaction:before {
+    content: "\f119";
+}
+.flaticon-coding:before {
+    content: "\f11a";
+}
+.flaticon-rating-stars:before {
+    content: "\f11b";
+}
+.flaticon-webinar:before {
+    content: "\f11c";
+}
+.flaticon-certificate:before {
+    content: "\f11d";
+}

@@ -1,0 +1,246 @@
+@use '../utils' as *;
+
+/*=============================
+    21. Newsletter
+===============================*/
+.newsletter {
+    &__area {
+        background: var(--tg-theme-primary);
+        position: relative;
+        padding: 35px 0 0;
+        z-index: 1;
+        overflow: hidden;
+        @media #{$md} {
+            padding: 40px 0;
+        }
+        &-two {
+            background: var(--tg-common-color-gray-10);
+        }
+    }
+    &__inner-wrap {
+        background: var(--tg-theme-primary);
+        border-radius: 20px;
+        padding: 66px 90px;
+        @include flexbox();
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        @media #{$xl} {
+            padding: 66px 70px;
+        }
+        @media #{$md} {
+            flex-direction: column;
+            text-align: center;
+        }
+        @media #{$xs} {
+            padding: 40px 25px;
+        }
+        @media #{$sm} {
+            padding: 50px 30px;
+        }
+        & .title {
+            margin-bottom: 0;
+            color: var(--tg-common-color-white);
+            font-size: 30px;
+            font-weight: 700;
+            text-transform: capitalize;
+            width: 44%;
+            flex: 0 0 auto;
+            @media #{$lg} {
+                width: 60%;
+                font-size: 28px;
+            }
+            @media #{$md} {
+                width: 100%;
+            }
+            @media #{$xs} {
+                font-size: 26px;
+            }
+        }
+        & .btn {
+            border: none;
+            background: var(--tg-common-color-white);
+            @include border-radius(6px);
+            box-shadow: none;
+            &:hover {
+                background: var(--tg-theme-secondary);
+                color: var(--tg-heading-color);
+                & svg {
+                    color: var(--tg-heading-color) !important;
+                }
+            }
+        }
+        & .shape {
+            position: absolute;
+            z-index: -1;
+            &.shape-one {
+                left: 0;
+                top: 0;
+                max-width: 198px;
+            }
+            &.shape-two {
+                right: 5%;
+                top: 14%;
+                max-width: 138px;
+                -webkit-animation-duration: 30s;
+                animation-duration: 30s;
+                @media #{$xs} {
+                    display: none;
+                }
+            }
+        }
+        &-two {
+            @media #{$lg} {
+                flex-wrap: wrap;
+                & .title {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    &__btn {
+        flex-grow: 1;
+        text-align: right;
+    }
+    &__img {
+        &-wrap {
+            position: relative;
+            text-align: center;
+            @media #{$md} {
+                display: none;
+            }
+            & img {
+                &:not(:nth-child(1)) {
+                    position: absolute;
+                }
+                &:nth-child(2) {
+                    left: 5%;
+                    bottom: 0;
+                    z-index: -1;
+                    @media #{$lg} {
+                        left: 15%;
+                    }
+                }
+                &:nth-child(3) {
+                    right: 16%;
+                    top: 18%;
+                    z-index: -1;
+                    @media #{$lg} {
+                        right: 5%;
+                    }
+                }
+            }
+        }
+    }
+    &__content {
+        @media #{$md} {
+            text-align: center;
+        }
+        & .title {
+            margin-bottom: 25px;
+            color: var(--tg-common-color-white);
+            font-size: 36px;
+            font-weight: 400;
+            text-transform: capitalize;
+            line-height: 1.2;
+            @media #{$lg} {
+                font-size: 34px;
+            }
+            & span {
+                font-weight: 700;
+            }
+        }
+    }
+    &__form {
+        width: 80%;
+        @media #{$lg} {
+            width: 100%;
+        }
+        & form {
+            @include flexbox();
+            align-items: center;
+            gap: 10px;
+            @media #{$xs} {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            & input {
+                width: 100%;
+                border: 1px solid #433EC2;
+                background: #4A44D1;
+                @include border-radius(50px);
+                color: var(--tg-common-color-white);
+                font-size: 16px;
+                padding: 18px 20px;
+                line-height: 1.4;
+                height: 60px;
+                flex-grow: 1;
+                &::placeholder {
+                    color: #9E9BF1;
+                    font-size: 16px;
+                    text-transform: capitalize;
+                }
+            }
+            & .btn {
+                background: var(--tg-theme-secondary);
+                min-width: 198px;
+                border: 1px solid #141109;
+                padding: 20px 30px;
+                color: var(--tg-heading-color);
+                box-shadow: 4px 6px 0px 0px #3D3D3D;
+                &:hover {
+                    box-shadow: none;
+                }
+            }
+        }
+        &-two {
+            @include flexbox();
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+            @media #{$xs} {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            & input {
+                width: 100%;
+                border: none;
+                background: var(--tg-common-color-white);
+                border-radius: 6px;
+                color: var(--tg-heading-color);
+                font-weight: 500;
+                font-size: 16px;
+                padding: 16px 25px;
+                height: 60px;
+            }
+            & .btn {
+                background: var(--tg-theme-secondary);
+                color: var(--tg-heading-color);
+                min-width: 180px;
+                padding: 21px 30px;
+                &:hover {
+                    background: var(--tg-heading-color);
+                    color: var(--tg-common-color-white);
+                }
+            }
+        }
+    }
+    &__shape {
+        & img {
+            position: absolute;
+            right: 14%;
+            top: 0;
+            z-index: -1;
+            @media #{$xl} {
+                right: 0;
+            }
+            @media #{$lg} {
+                display: none;
+            }
+        }
+    }
+}

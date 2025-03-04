@@ -1,0 +1,12 @@
+// Responsive Variables
+$xxl: '(max-width: 1800px)';
+$xl: '(max-width: 1500px)';
+$lg: '(max-width: 1199.98px)';
+$md: '(max-width: 991.98px)';
+$xs: '(max-width: 767.98px)';
+$sm: 'only screen and (min-width: 576px) and (max-width: 767px)';
+
+
+// responsive variable for wordpress admin bar
+$wp-sm: '@media (max-width: 782px)';
+$wp-xs: '@media (max-width: 600px)';

@@ -1,0 +1,332 @@
+@use '../utils' as *;
+
+/*=============================
+    14. CTA
+===============================*/
+.cta {
+    &__area {
+        position: relative;
+        padding: 200px 0;
+        @media #{$xl} {
+            padding: 170px 0;
+        }
+        @media #{$lg} {
+            padding: 150px 0;
+        }
+        @media #{$xs} {
+            padding: 120px 0;
+        }
+    }
+    &__bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        mix-blend-mode: luminosity;
+        background-attachment: fixed;
+        z-index: -1;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--tg-common-color-black-3);
+            opacity: 0.5;
+            z-index: -1;
+        }
+        &-two {
+            background-size: cover;
+            background-position: center;
+            padding: 70px 0 0;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            @media #{$md} {
+                padding: 70px 0 70px;
+            }
+        }
+        &-three {
+            margin: -85px 90px 0;
+            background-size: cover;
+            background-position: center;
+            @include border-radius(15px);
+            padding: 12px 48px 0;
+            @include flexbox();
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            @media #{$xl} {
+                margin: -85px 60px 0;
+            }
+            @media #{$lg} {
+                margin: -85px 0 0;
+            }
+            @media #{$md} {
+                padding: 30px 40px;
+            }
+            @media #{$xs} {
+                padding: 30px 30px;
+            }
+        }
+    }
+    &__inner-wrap {
+        background: var(--tg-common-color-blue-2);
+        @include flexbox();
+        align-items: center;
+        padding: 20px 70px 0;
+        @include border-radius(15px);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        gap: 40px;
+        margin-top: -90px;
+        @media #{$xl} {
+            padding: 20px 50px 0;
+        }
+        @media #{$lg} {
+            gap: 25px;
+        }
+        @media #{$md} {
+            padding: 35px 50px 35px;
+        }
+        @media #{$xs} {
+            padding: 35px 30px 35px;
+        }
+        & .shape {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+    }
+    &__img {
+        position: relative;
+        text-align: center;
+        @media #{$md} {
+            display: none;
+        }
+        & .shape {
+            & img {
+                position: absolute;
+                left: 19%;
+                top: -10%;
+                z-index: -1;
+                max-width: 247px;
+                -webkit-animation-duration: 100s;
+                animation-duration: 100s;
+                @media #{$lg} {
+                    left: 5%;
+                    max-width: 230px;
+                }
+            }
+        }
+        &-two {
+            width: 154px;
+            flex: 0 0 auto;
+            margin-right: 40px;
+            @media #{$md} {
+                display: none;
+            }
+        }
+        &-three {
+            width: 104px;
+            flex: 0 0 auto;
+            position: relative;
+            @media #{$md} {
+                display: none;
+            }
+            & .svg-icon {
+                position: absolute;
+                right: 10%;
+                top: -5%;
+                width: 23px;
+                height: auto;
+                & svg {
+                    color: var(--tg-theme-secondary);
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    &__content {
+        text-align: center;
+        & .title {
+            margin-bottom: 12px;
+            color: var(--tg-common-color-white);
+            text-transform: capitalize;
+            font-size: 60px;
+            font-weight: 700;
+            @media #{$lg} {
+                font-size: 55px;
+            }
+            @media #{$md} {
+                font-size: 50px;
+            }
+            @media #{$xs} {
+                font-size: 40px;
+            }
+            @media #{$sm} {
+                font-size: 42px;
+            }
+        }
+        & p {
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--tg-common-color-white);
+            text-transform: capitalize;
+            font-family: var(--tg-heading-font-family);
+            line-height: 1.2;
+            @media #{$md} {
+                font-size: 20px;
+            }
+        }
+        & .btn {
+            box-shadow: none;
+            background: var(--tg-theme-secondary);
+            color: var(--tg-heading-color);
+            & svg {
+                color: var(--tg-heading-color);
+            }
+        }
+        &-two {
+            @include flexbox();
+            align-items: center;
+            gap: 20px 110px;
+            margin-top: 60px;
+            @media #{$xl} {
+                gap: 20px 70px;
+            }
+            @media #{$lg} {
+                gap: 20px 30px;
+            }
+            @media #{$md} {
+                flex-direction: column;
+                margin-top: 0;
+                text-align: center;
+            }
+            & .title {
+                margin-bottom: 0;
+                color: var(--tg-common-color-white);
+                font-weight: 400;
+                text-transform: capitalize;
+                font-size: 36px;
+                @media #{$lg} {
+                    font-size: 30px;
+                }
+                @media #{$md} {
+                    font-size: 36px;
+                }
+                @media #{$xs} {
+                    font-size: 30px;
+                }
+                @media #{$sm} {
+                    font-size: 34px;
+                }
+                & span {
+                    font-weight: 700;
+                    color: var(--tg-theme-secondary);
+                }
+            }
+        }
+        &-three {
+            @include flexbox();
+            align-items: center;
+            gap: 30px;
+            flex-grow: 1;
+            justify-content: space-between;
+            @media #{$md} {
+                flex-direction: column;
+                text-align: center;
+            }
+            & .content__left {
+                & .title {
+                    margin-bottom: 0;
+                    color: var(--tg-common-color-white);
+                    font-size: 28px;
+                    text-transform: capitalize;
+                    font-weight: 600;
+                }
+                & p {
+                    margin-bottom: 0;
+                    color: var(--tg-common-color-white);
+                    font-weight: 500;
+                    text-transform: capitalize;
+                }
+            }
+            & .btn {
+                @include border-radius(6px);
+                box-shadow: none;
+                background: var(--tg-theme-secondary);
+                color: var(--tg-heading-color);
+                padding: 16px 19px;
+                width: 168px;
+                flex: 0 0 auto;
+                & svg {
+                    color: var(--tg-heading-color);
+                }
+            }
+        }
+        &-four {
+            margin-top: -20px;
+            @media #{$md} {
+                margin-top: 0;
+            }
+            & .content__left {
+                & .title {
+                    font-size: 30px;
+                    margin-bottom: 5px;
+                }
+            }
+            & .btn {
+                background: var(--tg-common-color-white);
+            }
+        }
+    }
+    &__btn {
+        width: 30%;
+        flex: 0 0 auto;
+        @media #{$lg} {
+            width: auto;
+            flex-grow: 1;
+        }
+        & .btn {
+            background: var(--tg-common-color-white);
+            color: var(--tg-heading-color);
+            box-shadow: 4px 6px 0 0 #0f0d32;
+            &:hover {
+                background: var(--tg-theme-secondary);
+                box-shadow: none;
+            }
+        }
+    }
+    &__shape {
+        & img {
+            position: absolute;
+            right: 6%;
+            top: 0;
+            z-index: -1;
+            max-width: 382px;
+            @media #{$md} {
+                right: 0;
+            }
+            @media #{$xs} {
+                display: none;
+            }
+        }
+        &-two {
+            & img {
+                position: absolute;
+                z-index: -1;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}

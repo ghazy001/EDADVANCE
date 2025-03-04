@@ -1,0 +1,124 @@
+@use '../utils' as *;
+
+/*=========================
+04. Breadcrumb
+===========================*/
+.breadcrumb {
+    &__bg {
+        background-size: cover;
+        background-position: center;
+        padding: 107px 0;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        @media #{$xl} {
+            padding: 100px 0;
+        }
+        &-two {
+            padding: 61px 0;
+            & .breadcrumb__shape-wrap {
+                & img {
+                    &:nth-child(3) {
+                        display: none;
+                    }
+                }
+            }
+        }
+        &-three {
+            min-height: 300px;
+        }
+    }
+    &__content {
+        & .title {
+            margin-bottom: 10px;
+            font-size: 40px;
+            line-height: 1.2;
+            @media #{$lg} {
+                font-size: 36px;
+            }
+            @media #{$xs} {
+                font-size: 30px;
+            }
+            @media #{$sm} {
+                font-size: 36px;
+            }
+        }
+        & .breadcrumb {
+            @include flexbox();
+            align-items: center;
+            margin-bottom: 0;
+            gap: 10px;
+            & > * {
+                font-size: 16px;
+                color: var(--tg-theme-primary);
+                & a {
+                    color: var(--tg-common-color-dark);
+                }
+            }
+            & .breadcrumb-separator {
+                line-height: 1;
+                font-size: 16px;
+                margin-top: 1px;
+                font-weight: 700;
+                margin-top: 2px;
+                opacity: 0.5;
+                color: var(--tg-common-color-gray-3);
+            }
+        }
+    }
+    &__shape-wrap {
+        & img {
+            position: absolute;
+            z-index: -1;
+            &:nth-child(1) {
+                left: 100px;
+                top: 62px;
+                @media #{$xl} {
+                    left: 69px;
+                    top: 52px;
+                }
+            }
+            &:nth-child(2) {
+                right: 32%;
+                top: 21%;
+                @media #{$xl} {
+                    right: 38%;
+                }
+                @media #{$md} {
+                    right: 31%;
+                }
+                @media #{$xs} {
+                    display: none;
+                }
+            }
+            &:nth-child(3) {
+                right: 20%;
+                bottom: 15%;
+                @media #{$xl} {
+                    right: 23%;
+                    bottom: 13%;
+                }
+            }
+            &:nth-child(4) {
+                right: 8%;
+                top: 8%;
+                @media #{$md} {
+                    right: 11%;
+                    top: 16%;
+                }
+            }
+            &:nth-child(5) {
+                right: 0;
+                top: 0;
+                @media #{$lg} {
+                    right: -30px;
+                    width: 400px;
+                    height: 285px;
+                }
+                @media #{$md} {
+                    display: none;
+                }
+            }
+        }
+    }
+}

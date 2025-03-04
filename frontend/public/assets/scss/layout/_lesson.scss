@@ -1,0 +1,231 @@
+@use '../utils' as *;
+
+/*=============================
+    15. Lesson
+===============================*/
+.lesson {
+    &__content {
+        & > .title {
+            margin-bottom: 20px;
+            font-size: 20px;
+            padding: 17px 20px;
+            border-bottom: 1px solid #DCDCEB;
+        }
+        & .accordion {
+            &-item {
+                border: none;
+                background: transparent;
+            }
+            &-button {
+                border: none;
+                box-shadow: none;
+                font-size: 16px;
+                color: var(--tg-heading-color);
+                padding: 18px 50px 18px 20px;
+                font-weight: 500;
+                border-bottom: 1px solid #DCDCEB;
+                @include flexbox();
+                align-items: center;
+                & span {
+                    margin-left: auto;
+                    font-size: 14px;
+                }
+                &:not(.collapsed) {
+                    background: transparent;
+                    color: var(--tg-theme-primary);
+                    &::after {
+                        content: "\f068";
+                    }
+                }
+                &::after {
+                    content: "\f067";
+                    font-family: var(--tg-icon-font-family);
+                    font-weight: 700;
+                    background-image: none;
+                    width: auto;
+                    height: auto;
+                    position: absolute;
+                    right: 20px;
+                    top: 17px;
+                    font-size: 16px;
+                }
+            }
+            &-body {
+                padding: 0;
+            }
+        }
+        & .course-item {
+            padding: 13px 20px;
+            background: #F8F8FF;
+            margin-bottom: 2px;
+            &-link {
+                @include flexbox();
+                align-items: center;
+                justify-content: space-between;
+                gap: 20px;
+                color: var(--tg-common-color-dark);
+                cursor: no-drop;
+                & .item-name {
+                    @include flexbox();
+                    gap: 10px;
+                    align-items: center;
+                    &::before {
+                        content: "";
+                        display: block;
+                        background-image: url(/assets/img/icons/play.svg);
+                        width: 30px;
+                        height: 30px;
+                        flex: 0 0 auto;
+                    }
+                }
+                &.active {
+                    color: var(--tg-theme-primary);
+                    cursor: pointer;
+                }
+            }
+            &-meta {
+                margin-left: auto;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                align-items: center;
+                line-height: 1;
+                gap: 10px;
+                flex: 0 0 auto;
+                & .duration {
+                    margin: 2px 0 0;
+                }
+            }
+        }
+    }
+    &__video {
+        &-wrap {
+            margin-bottom: 40px;
+            position: relative;
+            &:hover {
+                & .lesson__next-prev-button {
+                    & button {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+            &-top {
+                @include flexbox();
+                align-items: center;
+                background: var(--tg-theme-primary);
+                padding: 13px 20px;
+                justify-content: space-between;
+                gap: 10px;
+                &-left {
+                    @include flexbox();
+                    align-items: center;
+                    gap: 20px;
+                    & a {
+                        width: 35px;
+                        height: 35px;
+                        @include flexbox();
+                        align-items: center;
+                        justify-content: center;
+                        background: #ffffff21;
+                        @include border-radius(50%);
+                        color: var(--tg-common-color-white);
+                        flex: 0 0 auto;
+                        & i {
+                            transform: rotate(180deg);
+                        }
+                    }
+                    & span {
+                        display: block;
+                        color: var(--tg-common-color-white);
+                        font-size: 18px;
+                        font-weight: 500;
+                        font-family: var(--tg-heading-font-family);
+                        @media #{$xs} {
+                            font-size: 16px;
+                        }
+                    }
+                }
+                &-right {
+                    & a {
+                        width: 35px;
+                        height: 35px;
+                        @include flexbox();
+                        align-items: center;
+                        justify-content: center;
+                        background: #ffffff21;
+                        color: var(--tg-common-color-white);
+                        @include border-radius(50%);
+                        flex: 0 0 auto;
+                    }
+                }
+            }
+            & .plyr {
+                &__poster {
+                    background-size: cover;
+                }
+                &__control {
+                    &--overlaid {
+                        padding: 24px;
+                        background: var(--tg-theme-primary);
+                        &:hover {
+                            background: var(--tg-theme-secondary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__details-content {
+        margin-right: 50px;
+        @media #{$md} {
+            margin: 0 30px;
+        }
+        @media #{$xs} {
+            margin: 0 15px;
+        }
+    }
+    &__next-prev-button {
+        & button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            width: 40px;
+            height: 40px;
+            border: none;
+            @include flexbox();
+            align-items: center;
+            justify-content: center;
+            @include border-radius(50%);
+            background: rgba(255, 255, 255, 0.1294117647);
+            color: var(--tg-common-color-white);
+            line-height: 0;
+            font-size: 18px;
+            border: 1px solid rgba(255 255 255 / 27%);
+            opacity: 0;
+            visibility: hidden;
+            &.next-button {
+                left: auto;
+                right: 20px;
+                transform: translateY(-50%) rotate(0deg);
+            }
+            &:hover {
+                background: var(--tg-theme-primary);
+                border-color: var(--tg-theme-primary);
+            }
+        }
+    }
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded=true] {
+    background: var(--tg-theme-primary);
+}
+
+.plyr--full-ui input[type=range] {
+    color: var(--tg-theme-primary);
+}

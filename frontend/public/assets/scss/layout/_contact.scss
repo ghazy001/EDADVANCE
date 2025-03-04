@@ -1,0 +1,166 @@
+@use '../utils' as *;
+
+/*=============================
+    22. Contact
+===============================*/
+.contact {
+    &-info-wrap {
+        & .list-wrap li {
+            @include flexbox();
+            align-items: center;
+            padding: 40px 40px;
+            margin-bottom: 30px;
+            @include border-radius(10px);
+            border: 1px solid #E1E1E1;
+            background: #F7F7FA;
+            gap: 25px;
+            @media #{$lg} {
+                padding: 25px 25px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            @media #{$md} {
+                flex-wrap: nowrap;
+            }
+            @media #{$xs} {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            @media #{$xs} {
+                flex-direction: row;
+                align-items: center;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+            & .icon {
+                width: 70px;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: var(--tg-theme-primary);
+                color: var(--tg-common-color-white);
+                font-size: 20px;
+                line-height: 0;
+                flex: 0 0 auto;
+            }
+            & .content {
+                & .title {
+                    font-size: 20px;
+                    margin-bottom: 5px;
+                }
+                & p {
+                    margin-bottom: 0;
+                    font-weight: 500;
+                    line-height: 1.4;
+                }
+                & a {
+                    display: block;
+                    font-weight: 500;
+                    color: var(--tg-body-color);
+                    line-height: 1.4;
+                    &:hover {
+                        color: var(--tg-theme-primary);
+                    }
+                }
+            }
+        }
+    }
+    &-form-wrap {
+        @include border-radius(12px);
+        border: 1px solid #E1E1E1;
+        background: #F7F7FA;
+        padding: 30px 40px 42px;
+        @media #{$lg} {
+            padding: 30px 25px 40px;
+        }
+        @media #{$md} {
+            padding: 30px 30px 40px;
+            margin-top: 60px;
+        }
+        @media #{$xs} {
+            padding: 25px 20px 30px;
+        }
+        @media #{$sm} {
+            padding: 30px 25px 40px;
+        }
+        & .title {
+            margin-bottom: 5px;
+            position: relative;
+            font-size: 30px;
+            @media #{$lg} {
+                font-size: 28px;
+            }
+            @media #{$xs} {
+                font-size: 24px;
+            }
+        }
+        & p {
+            margin-bottom: 15px;
+        }
+        & .form-grp {
+            margin-bottom: 20px;
+            & input,
+            & textarea {
+                width: 100%;
+                border: 1px solid #E1E4E7;
+                border-radius: 5px;
+                display: block;
+                background: var(--tg-common-color-white);
+                font-weight: 400;
+                font-size: 16px;
+                color: var(--tg-body-color);
+                padding: 11px 20px;
+                height: 50px;
+                transition: .3s;
+                &::placeholder {
+                    font-weight: 400;
+                    font-size: 16px;
+                    color: var(--tg-body-color);
+                    opacity: .8;
+                }
+                &:focus {
+                    border-color: var(--tg-theme-primary);
+                }
+            }
+            & textarea {
+                min-height: 230px;
+                max-height: 230px;
+            }
+        }
+        & .row {
+            --bs-gutter-x: 20px;
+        }
+    }
+    &-map {
+        width: 100%;
+        height: 555px;
+        margin-top: 70px;
+        @media #{$lg} {
+            height: 430px;
+        }
+        @media #{$xs} {
+            height: 380px;
+        }
+        & iframe {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(1);
+            @include border-radius(12px);
+        }
+    }
+}
+.ajax-response {
+    &.error,
+    &.success {
+        margin: 20px 0 0 !important;
+    }
+    &.error {
+        color: red;
+    }
+    &.success {
+        color: green;
+    }
+}
