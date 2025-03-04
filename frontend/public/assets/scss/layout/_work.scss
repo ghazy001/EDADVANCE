@@ -1,0 +1,82 @@
+@use '../utils' as *;
+
+/*=============================
+    15. Work
+===============================*/
+.work {
+    &__images {
+        margin: 0 auto;
+        text-align: center;
+        @media #{$md} {
+            margin-bottom: 50px;
+        }
+        & .shape {
+            right: 220px;
+            @media #{$xs} {
+                right: 88px;
+            }
+        }
+    }
+    &__content {
+        width: 85%;
+        @media #{$lg} {
+            width: 100%;
+        }
+        & > p {
+            margin-bottom: 25px;
+        }
+    }
+    &__list {
+        &-wrap {
+            @include flexbox();
+            align-items: center;
+            margin: 0 -15px;
+        }
+        &-box {
+            width: 50%;
+            flex: 0 0 auto;
+            padding: 0 15px;
+            margin-bottom: 30px;
+            &-top {
+                @include flexbox();
+                gap: 20px;
+                align-items: center;
+                margin-bottom: 18px;
+                @media #{$lg} {
+                    display: block;
+                }
+                & .title {
+                    font-size: 20px;
+                    margin-bottom: 0;
+                }
+            }
+            & .icon {
+                width: 60px;
+                height: 60px;
+                flex: 0 0 auto;
+                align-items: center;
+                justify-content: center;
+                @include flexbox();
+                @include border-radius(50%);
+                background: #FF6666;
+                border: 1px solid #CE3B3B;
+                font-size: 35px;
+                line-height: 0;
+                color: var(--tg-common-color-white);
+                @include box-shadow(5px 5px 0px 0px rgba(0, 0, 0, 0.25));
+                @media #{$lg} {
+                    margin-bottom: 20px;
+                }
+            }
+            & p {
+                margin-bottom: 0;
+            }
+            &:nth-child(2) {
+                & .icon {
+                    background: #1BCBE3;
+                    border: 1px solid #019AAF;
+                }
+            }
+        }
+    }
+}
