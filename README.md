@@ -10,7 +10,6 @@ This API provides comprehensive user management and course retrieval functionali
 ### Technology Stack
 - **Backend:** Express.js
 - **Database:** MongoDB (using Mongoose)
-- **External API:** [geo.ipify.org](https://geo.ipify.org) for geolocation
 
 ### Dependencies
 - `express`, `axios`, `dotenv`, `mongoose`, `bcrypt`, `nodemailer`, `uuid`, `crypto`, `ml-distance`
