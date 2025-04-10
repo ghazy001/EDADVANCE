@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flaticon Webfont</title>
+    <link rel="stylesheet" type="text/css" href="flaticon-skillgro-new.css"/>
+    <meta charset="UTF-8">
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        body {
+            font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #777777;
+        }
+
+        a {
+            color: #52D999;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        * {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        [class^="skillgro-"]:before, [class*=" skillgro-"]:before, [class^="skillgro-"]:after, [class*=" skillgro-"]:after {
+            font-family: Flaticon;
+            font-size: 32px;
+            line-height: 1.25;
+            font-style: normal;
+            margin-left: 20px;
+            color: #424242;
+        }
+
+        .wrapper {
+            max-width: 600px;
+            margin: auto;
+            padding: 0 1em;
+        }
+
+        .title {
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        header {
+            text-align: center;
+            padding: 24px;
+        }
+
+        header .logo {
+            height: auto;
+            border: none;
+            display: inline-block;
+        }
+
+        header strong {
+            font-size: 24px;
+            line-height: 1.25;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        .demo {
+            margin: 2em auto;
+            line-height: 1.25;
+        }
+
+        .demo ul li {
+            margin-bottom: 12px;
+        }
+
+        .demo ul li code {
+            background-color: #121212;
+            border-radius: 3px;
+            padding: 12px;
+            display: inline-block;
+            color: #fff;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+            font-weight: lighter;
+            margin-top: 12px;
+            font-size: 13px;
+            word-break: break-all;
+        }
+
+        .demo ul li code .red {
+            color: #EB644C;
+        }
+
+        .demo ul li code .green {
+            color: #52D999;
+        }
+
+        .demo ul li code .yellow {
+            color: #FFF4D9;
+        }
+
+        .demo ul li code .blue {
+            color: #648EEF;
+        }
+
+        .demo ul li code .purple {
+            color: #6569BD;
+        }
+
+        .demo ul li code .dots {
+            margin-top: 0.5em;
+            display: block;
+        }
+
+        #glyphs {
+            border-bottom: 1px solid #E5E5E5;
+            padding: 2em 0;
+            text-align: center;
+        }
+
+        .glyph {
+            display: inline-block;
+            width: 9em;
+            margin: 1em;
+            text-align: center;
+            vertical-align: top;
+            background: #FFF;
+        }
+
+        .glyph .flaticon {
+            padding: 10px;
+            display: block;
+            font-family: "Flaticon";
+            font-size: 64px;
+            line-height: 1;
+        }
+
+        .glyph .flaticon:before {
+            font-size: 64px;
+            color: #777777;
+            margin-left: 0;
+        }
+
+        .class-name {
+            font-size: 0.65em;
+            background-color: #E5E5E5;
+            color: #9C9C9C;
+            border-radius: 4px 4px 0 0;
+            padding: 0.5em;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        .author-name {
+            font-size: 0.6em;
+            background-color: #EFF3F6;
+            border-top: 0;
+            border-radius: 0 0 4px 4px;
+            padding: 0.5em;
+        }
+
+        .author-name a {
+            color: #121212;
+        }
+
+        .class-name:last-child {
+            font-size: 10px;
+            line-height: 1.75;
+            color: #888;
+        }
+
+        .class-name:last-child a {
+            font-size: 10px;
+            line-height: 1.75;
+            color: #555;
+        }
+
+        .glyph > input {
+            display: block;
+            width: 100px;
+            margin: 5px auto;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.75;
+            cursor: text;
+        }
+
+        .glyph > input.icon-input {
+            font-family: "Flaticon";
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .attribution .title {
+            margin-top: 2em;
+        }
+
+        .attribution textarea {
+            background-color: #F8FAFB;
+            color: #121212;
+            padding: 1em;
+            border: none;
+            box-shadow: none;
+            border: 1px solid #E5E5E5;
+            border-radius: 4px;
+            resize: none;
+            width: 100%;
+            height: 150px;
+            font-size: 13px;
+            line-height: 1.6;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+            -webkit-appearance: none;
+        }
+
+        .attribution textarea:hover {
+            border-color: #CFD9E0;
+        }
+
+        .attribution textarea:focus {
+            border-color: #52D999;
+        }
+
+        .iconsuse {
+            margin: 2em auto;
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .iconsuse:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .iconsuse .image {
+            float: left;
+            width: 25%;
+            padding: 0 1em;
+        }
+
+        .iconsuse .image p {
+            margin-bottom: 1em;
+        }
+
+        .iconsuse .image span {
+            display: block;
+            font-size: 0.65em;
+            background-color: #222;
+            color: #fff;
+            border-radius: 4px;
+            padding: 10px;
+            color: #FFFF99;
+            margin-top: 1em;
+            font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+
+        .flaticon:before {
+            color: #777777;
+        }
+
+        #footer {
+            text-align: center;
+            background-color: #121212;
+            color: #9C9C9C;
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #footer a {
+            font-weight: normal;
+        }
+
+        @media (max-width: 960px) {
+            .iconsuse .image {
+                width: 50%;
+            }
+        }
+
+        .preview {
+            width: 100px;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .preview .inner {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #F7F7F7;
+            -webkit-border-radius: 3px 3px 0 0;
+            -moz-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .preview .inner  {
+            line-height: 85px;
+            font-size: 40px;
+            color: #424242;
+        }
+
+        .label {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 10px;
+            font-family: Monaco, monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: #ddd;
+            -webkit-border-radius: 0 0 3px 3px;
+            -moz-border-radius: 0 0 3px 3px;
+            border-radius: 0 0 3px 3px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://www.flaticon.com/" target="_blank" class="logo">
+            <img src="https://media.flaticon.com/dist/min/img/logos/skillgro-by-positive-hor.svg" alt="logo">
+        </a>
+    </header>
+    <section class="demo wrapper">
+
+        <p class="title">Webfont Instructions</p>
+
+        <ul>
+            <li>
+                <span class="num">1. </span>Copy the "Fonts" files and CSS files to your website CSS folder.
+            </li>
+            <li>
+                <span class="num">2. </span>Add the CSS link to your website source code on header.
+                <code class="big">
+                    &lt;<span class="red">head</span>&gt;
+                    <br/><span class="dots">...</span>
+                    <br/>&lt;<span class="red">link</span> <span class="green">rel</span>=<span
+                        class="yellow">"stylesheet"</span> <span class="green">type</span>=<span
+                        class="yellow">"text/css"</span> <span class="green">href</span>=<span class="yellow">"your_website_domain/css_root/flaticon_collection_name.css"</span>&gt;
+                    <br/><span class="dots">...</span>
+                    <br/>&lt;/<span class="red">head</span>&gt;
+                </code>
+            </li>
+
+            <li>
+                <p>
+                    <span class="num">3. </span>Use the icon class on <code>"<span class="blue">display</span>:<span
+                        class="purple"> inline</span>"</code> elements:
+                    <br/>
+                    Use example: <code>&lt;<span class="red">i</span> <span class="green">class</span>=<span class="yellow">&quot;skillgro-airplane49&quot;</span>&gt;&lt;/<span
+                        class="red">i</span>&gt;</code> or <code>&lt;<span class="red">span</span> <span
+                        class="green">class</span>=<span class="yellow">&quot;skillgro-airplane49&quot;</span>&gt;&lt;/<span
+                        class="red">span</span>&gt;</code>
+            </li>
+        </ul>
+
+    </section>
+    <section id="glyphs">
+            <div class="glyph">
+                <i class="flaticon skillgro-book"></i>
+                <div class="class-name">.skillgro-book</div>
+                <div class="author-name">Author: #author-link-skillgro-book# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-lotus"></i>
+                <div class="class-name">.skillgro-lotus</div>
+                <div class="author-name">Author: #author-link-skillgro-lotus# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-text-file"></i>
+                <div class="class-name">.skillgro-text-file</div>
+                <div class="author-name">Author: #author-link-skillgro-text-file# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-happy-face"></i>
+                <div class="class-name">.skillgro-happy-face</div>
+                <div class="author-name">Author: #author-link-skillgro-happy-face# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-taxes"></i>
+                <div class="class-name">.skillgro-taxes</div>
+                <div class="author-name">Author: #author-link-skillgro-taxes# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-vector"></i>
+                <div class="class-name">.skillgro-vector</div>
+                <div class="author-name">Author: #author-link-skillgro-vector# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-notepad"></i>
+                <div class="class-name">.skillgro-notepad</div>
+                <div class="author-name">Author: #author-link-skillgro-notepad# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-writing"></i>
+                <div class="class-name">.skillgro-writing</div>
+                <div class="author-name">Author: #author-link-skillgro-writing# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-audio-book"></i>
+                <div class="class-name">.skillgro-audio-book</div>
+                <div class="author-name">Author: #author-link-skillgro-audio-book# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-financial-profit"></i>
+                <div class="class-name">.skillgro-financial-profit</div>
+                <div class="author-name">Author: #author-link-skillgro-financial-profit# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-development-plan"></i>
+                <div class="class-name">.skillgro-development-plan</div>
+                <div class="author-name">Author: #author-link-skillgro-development-plan# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-smart-watch"></i>
+                <div class="class-name">.skillgro-smart-watch</div>
+                <div class="author-name">Author: #author-link-skillgro-smart-watch# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-browser"></i>
+                <div class="class-name">.skillgro-browser</div>
+                <div class="author-name">Author: #author-link-skillgro-browser# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-heart"></i>
+                <div class="class-name">.skillgro-heart</div>
+                <div class="author-name">Author: #author-link-skillgro-heart# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-mortarboard"></i>
+                <div class="class-name">.skillgro-mortarboard</div>
+                <div class="author-name">Author: #author-link-skillgro-mortarboard# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-stone"></i>
+                <div class="class-name">.skillgro-stone</div>
+                <div class="author-name">Author: #author-link-skillgro-stone# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-label"></i>
+                <div class="class-name">.skillgro-label</div>
+                <div class="author-name">Author: #author-link-skillgro-label# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-menu"></i>
+                <div class="class-name">.skillgro-menu</div>
+                <div class="author-name">Author: #author-link-skillgro-menu# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-satchel"></i>
+                <div class="class-name">.skillgro-satchel</div>
+                <div class="author-name">Author: #author-link-skillgro-satchel# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-law"></i>
+                <div class="class-name">.skillgro-law</div>
+                <div class="author-name">Author: #author-link-skillgro-law# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-profit"></i>
+                <div class="class-name">.skillgro-profit</div>
+                <div class="author-name">Author: #author-link-skillgro-profit# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-ribbon"></i>
+                <div class="class-name">.skillgro-ribbon</div>
+                <div class="author-name">Author: #author-link-skillgro-ribbon# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-time"></i>
+                <div class="class-name">.skillgro-time</div>
+                <div class="author-name">Author: #author-link-skillgro-time# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-book-1"></i>
+                <div class="class-name">.skillgro-book-1</div>
+                <div class="author-name">Author: #author-link-skillgro-book-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-magnifying-glass"></i>
+                <div class="class-name">.skillgro-magnifying-glass</div>
+                <div class="author-name">Author: #author-link-skillgro-magnifying-glass# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-heart-1"></i>
+                <div class="class-name">.skillgro-heart-1</div>
+                <div class="author-name">Author: #author-link-skillgro-heart-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-group"></i>
+                <div class="class-name">.skillgro-group</div>
+                <div class="author-name">Author: #author-link-skillgro-group# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-review"></i>
+                <div class="class-name">.skillgro-review</div>
+                <div class="author-name">Author: #author-link-skillgro-review# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-anahata"></i>
+                <div class="class-name">.skillgro-anahata</div>
+                <div class="author-name">Author: #author-link-skillgro-anahata# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-search"></i>
+                <div class="class-name">.skillgro-search</div>
+                <div class="author-name">Author: #author-link-skillgro-search# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-users"></i>
+                <div class="class-name">.skillgro-users</div>
+                <div class="author-name">Author: #author-link-skillgro-users# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-gear"></i>
+                <div class="class-name">.skillgro-gear</div>
+                <div class="author-name">Author: #author-link-skillgro-gear# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-avatar"></i>
+                <div class="class-name">.skillgro-avatar</div>
+                <div class="author-name">Author: #author-link-skillgro-avatar# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-sliders"></i>
+                <div class="class-name">.skillgro-sliders</div>
+                <div class="author-name">Author: #author-link-skillgro-sliders# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-file"></i>
+                <div class="class-name">.skillgro-file</div>
+                <div class="author-name">Author: #author-link-skillgro-file# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-arrow-up"></i>
+                <div class="class-name">.skillgro-arrow-up</div>
+                <div class="author-name">Author: #author-link-skillgro-arrow-up# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-closed-book"></i>
+                <div class="class-name">.skillgro-closed-book</div>
+                <div class="author-name">Author: #author-link-skillgro-closed-book# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-graduation"></i>
+                <div class="class-name">.skillgro-graduation</div>
+                <div class="author-name">Author: #author-link-skillgro-graduation# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-right-arrow"></i>
+                <div class="class-name">.skillgro-right-arrow</div>
+                <div class="author-name">Author: #author-link-skillgro-right-arrow# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-heart-2"></i>
+                <div class="class-name">.skillgro-heart-2</div>
+                <div class="author-name">Author: #author-link-skillgro-heart-2# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-instructor"></i>
+                <div class="class-name">.skillgro-instructor</div>
+                <div class="author-name">Author: #author-link-skillgro-instructor# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-arrow-up-1"></i>
+                <div class="class-name">.skillgro-arrow-up-1</div>
+                <div class="author-name">Author: #author-link-skillgro-arrow-up-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-tutorial"></i>
+                <div class="class-name">.skillgro-tutorial</div>
+                <div class="author-name">Author: #author-link-skillgro-tutorial# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-lotus-flower"></i>
+                <div class="class-name">.skillgro-lotus-flower</div>
+                <div class="author-name">Author: #author-link-skillgro-lotus-flower# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-bulb"></i>
+                <div class="class-name">.skillgro-bulb</div>
+                <div class="author-name">Author: #author-link-skillgro-bulb# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-presentation"></i>
+                <div class="class-name">.skillgro-presentation</div>
+                <div class="author-name">Author: #author-link-skillgro-presentation# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-flash"></i>
+                <div class="class-name">.skillgro-flash</div>
+                <div class="author-name">Author: #author-link-skillgro-flash# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-web-programming"></i>
+                <div class="class-name">.skillgro-web-programming</div>
+                <div class="author-name">Author: #author-link-skillgro-web-programming# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-development"></i>
+                <div class="class-name">.skillgro-development</div>
+                <div class="author-name">Author: #author-link-skillgro-development# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-hatha-yoga"></i>
+                <div class="class-name">.skillgro-hatha-yoga</div>
+                <div class="author-name">Author: #author-link-skillgro-hatha-yoga# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-exchange"></i>
+                <div class="class-name">.skillgro-exchange</div>
+                <div class="author-name">Author: #author-link-skillgro-exchange# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-customer-support"></i>
+                <div class="class-name">.skillgro-customer-support</div>
+                <div class="author-name">Author: #author-link-skillgro-customer-support# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-investment"></i>
+                <div class="class-name">.skillgro-investment</div>
+                <div class="author-name">Author: #author-link-skillgro-investment# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-email"></i>
+                <div class="class-name">.skillgro-email</div>
+                <div class="author-name">Author: #author-link-skillgro-email# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-next"></i>
+                <div class="class-name">.skillgro-next</div>
+                <div class="author-name">Author: #author-link-skillgro-next# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-fashion"></i>
+                <div class="class-name">.skillgro-fashion</div>
+                <div class="author-name">Author: #author-link-skillgro-fashion# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-group-1"></i>
+                <div class="class-name">.skillgro-group-1</div>
+                <div class="author-name">Author: #author-link-skillgro-group-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-placeholder"></i>
+                <div class="class-name">.skillgro-placeholder</div>
+                <div class="author-name">Author: #author-link-skillgro-placeholder# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-photo-camera"></i>
+                <div class="class-name">.skillgro-photo-camera</div>
+                <div class="author-name">Author: #author-link-skillgro-photo-camera# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-diploma"></i>
+                <div class="class-name">.skillgro-diploma</div>
+                <div class="author-name">Author: #author-link-skillgro-diploma# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-diploma-1"></i>
+                <div class="class-name">.skillgro-diploma-1</div>
+                <div class="author-name">Author: #author-link-skillgro-diploma-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-cup"></i>
+                <div class="class-name">.skillgro-cup</div>
+                <div class="author-name">Author: #author-link-skillgro-cup# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-happiness"></i>
+                <div class="class-name">.skillgro-happiness</div>
+                <div class="author-name">Author: #author-link-skillgro-happiness# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-idea"></i>
+                <div class="class-name">.skillgro-idea</div>
+                <div class="author-name">Author: #author-link-skillgro-idea# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-video-camera"></i>
+                <div class="class-name">.skillgro-video-camera</div>
+                <div class="author-name">Author: #author-link-skillgro-video-camera# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-database"></i>
+                <div class="class-name">.skillgro-database</div>
+                <div class="author-name">Author: #author-link-skillgro-database# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-book-2"></i>
+                <div class="class-name">.skillgro-book-2</div>
+                <div class="author-name">Author: #author-link-skillgro-book-2# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-phone-call"></i>
+                <div class="class-name">.skillgro-phone-call</div>
+                <div class="author-name">Author: #author-link-skillgro-phone-call# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-brain"></i>
+                <div class="class-name">.skillgro-brain</div>
+                <div class="author-name">Author: #author-link-skillgro-brain# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-finance"></i>
+                <div class="class-name">.skillgro-finance</div>
+                <div class="author-name">Author: #author-link-skillgro-finance# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-webinar"></i>
+                <div class="class-name">.skillgro-webinar</div>
+                <div class="author-name">Author: #author-link-skillgro-webinar# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-atom"></i>
+                <div class="class-name">.skillgro-atom</div>
+                <div class="author-name">Author: #author-link-skillgro-atom# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-next-1"></i>
+                <div class="class-name">.skillgro-next-1</div>
+                <div class="author-name">Author: #author-link-skillgro-next-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-money-bag"></i>
+                <div class="class-name">.skillgro-money-bag</div>
+                <div class="author-name">Author: #author-link-skillgro-money-bag# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-calendar"></i>
+                <div class="class-name">.skillgro-calendar</div>
+                <div class="author-name">Author: #author-link-skillgro-calendar# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-graduating-student"></i>
+                <div class="class-name">.skillgro-graduating-student</div>
+                <div class="author-name">Author: #author-link-skillgro-graduating-student# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-tooth"></i>
+                <div class="class-name">.skillgro-tooth</div>
+                <div class="author-name">Author: #author-link-skillgro-tooth# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-video-tutorial"></i>
+                <div class="class-name">.skillgro-video-tutorial</div>
+                <div class="author-name">Author: #author-link-skillgro-video-tutorial# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-mortarboard-1"></i>
+                <div class="class-name">.skillgro-mortarboard-1</div>
+                <div class="author-name">Author: #author-link-skillgro-mortarboard-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-idea-1"></i>
+                <div class="class-name">.skillgro-idea-1</div>
+                <div class="author-name">Author: #author-link-skillgro-idea-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-presentation-1"></i>
+                <div class="class-name">.skillgro-presentation-1</div>
+                <div class="author-name">Author: #author-link-skillgro-presentation-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-three-o-clock-clock"></i>
+                <div class="class-name">.skillgro-three-o-clock-clock</div>
+                <div class="author-name">Author: #author-link-skillgro-three-o-clock-clock# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-customize"></i>
+                <div class="class-name">.skillgro-customize</div>
+                <div class="author-name">Author: #author-link-skillgro-customize# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-certificate"></i>
+                <div class="class-name">.skillgro-certificate</div>
+                <div class="author-name">Author: #author-link-skillgro-certificate# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-calculator"></i>
+                <div class="class-name">.skillgro-calculator</div>
+                <div class="author-name">Author: #author-link-skillgro-calculator# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-verified"></i>
+                <div class="class-name">.skillgro-verified</div>
+                <div class="author-name">Author: #author-link-skillgro-verified# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-graduated"></i>
+                <div class="class-name">.skillgro-graduated</div>
+                <div class="author-name">Author: #author-link-skillgro-graduated# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-shopping-cart"></i>
+                <div class="class-name">.skillgro-shopping-cart</div>
+                <div class="author-name">Author: #author-link-skillgro-shopping-cart# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-diploma-2"></i>
+                <div class="class-name">.skillgro-diploma-2</div>
+                <div class="author-name">Author: #author-link-skillgro-diploma-2# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-mat"></i>
+                <div class="class-name">.skillgro-mat</div>
+                <div class="author-name">Author: #author-link-skillgro-mat# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-user"></i>
+                <div class="class-name">.skillgro-user</div>
+                <div class="author-name">Author: #author-link-skillgro-user# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-demand"></i>
+                <div class="class-name">.skillgro-demand</div>
+                <div class="author-name">Author: #author-link-skillgro-demand# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-dashboard"></i>
+                <div class="class-name">.skillgro-dashboard</div>
+                <div class="author-name">Author: #author-link-skillgro-dashboard# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-bookmark-white"></i>
+                <div class="class-name">.skillgro-bookmark-white</div>
+                <div class="author-name">Author: #author-link-skillgro-bookmark-white# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-question"></i>
+                <div class="class-name">.skillgro-question</div>
+                <div class="author-name">Author: #author-link-skillgro-question# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-clipboard"></i>
+                <div class="class-name">.skillgro-clipboard</div>
+                <div class="author-name">Author: #author-link-skillgro-clipboard# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-marketing"></i>
+                <div class="class-name">.skillgro-marketing</div>
+                <div class="author-name">Author: #author-link-skillgro-marketing# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-chat"></i>
+                <div class="class-name">.skillgro-chat</div>
+                <div class="author-name">Author: #author-link-skillgro-chat# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-list"></i>
+                <div class="class-name">.skillgro-list</div>
+                <div class="author-name">Author: #author-link-skillgro-list# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-settings"></i>
+                <div class="class-name">.skillgro-settings</div>
+                <div class="author-name">Author: #author-link-skillgro-settings# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-logout"></i>
+                <div class="class-name">.skillgro-logout</div>
+                <div class="author-name">Author: #author-link-skillgro-logout# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-dollar-currency-symbol"></i>
+                <div class="class-name">.skillgro-dollar-currency-symbol</div>
+                <div class="author-name">Author: #author-link-skillgro-dollar-currency-symbol# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-quality"></i>
+                <div class="class-name">.skillgro-quality</div>
+                <div class="author-name">Author: #author-link-skillgro-quality# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-group-2"></i>
+                <div class="class-name">.skillgro-group-2</div>
+                <div class="author-name">Author: #author-link-skillgro-group-2# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-badge"></i>
+                <div class="class-name">.skillgro-badge</div>
+                <div class="author-name">Author: #author-link-skillgro-badge# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-twitter"></i>
+                <div class="class-name">.skillgro-twitter</div>
+                <div class="author-name">Author: #author-link-skillgro-twitter# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-maps-and-flags"></i>
+                <div class="class-name">.skillgro-maps-and-flags</div>
+                <div class="author-name">Author: #author-link-skillgro-maps-and-flags# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-email-1"></i>
+                <div class="class-name">.skillgro-email-1</div>
+                <div class="author-name">Author: #author-link-skillgro-email-1# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-next-2"></i>
+                <div class="class-name">.skillgro-next-2</div>
+                <div class="author-name">Author: #author-link-skillgro-next-2# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-back"></i>
+                <div class="class-name">.skillgro-back</div>
+                <div class="author-name">Author: #author-link-skillgro-back# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-edit"></i>
+                <div class="class-name">.skillgro-edit</div>
+                <div class="author-name">Author: #author-link-skillgro-edit# </div>
+            </div>
+
+            <div class="glyph">
+                <i class="flaticon skillgro-bin"></i>
+                <div class="class-name">.skillgro-bin</div>
+                <div class="author-name">Author: #author-link-skillgro-bin# </div>
+            </div>
+
+    </section>
+
+    <section class="attribution wrapper"   style="text-align:center;">
+
+        <div class="title">License and attribution:</div><div class="attrDiv">Font generated by <a href="https://www.flaticon.com">flaticon.com</a>. <div>#allAuthorLinksCC# #allAuthorLinksBasic# </div>
+        </div>
+        <div class="title">Copy the Attribution License:</div>
+
+        <textarea onclick="this.focus();this.select();">Font generated by &lt;a href=&quot;https://www.flaticon.com&quot;&gt;flaticon.com&lt;/a&gt;. #allAuthorLinksCC# #allAuthorLinksBasic#
+        </textarea>
+
+    </section>
+
+    <section class="iconsuse">
+
+        <div class="title">Examples:</div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-book"></i>
+                    <span>&lt;i class=&quot;skillgro-book&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-lotus"></i>
+                    <span>&lt;i class=&quot;skillgro-lotus&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-text-file"></i>
+                    <span>&lt;i class=&quot;skillgro-text-file&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-happy-face"></i>
+                    <span>&lt;i class=&quot;skillgro-happy-face&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-taxes"></i>
+                    <span>&lt;i class=&quot;skillgro-taxes&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-vector"></i>
+                    <span>&lt;i class=&quot;skillgro-vector&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-notepad"></i>
+                    <span>&lt;i class=&quot;skillgro-notepad&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-writing"></i>
+                    <span>&lt;i class=&quot;skillgro-writing&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-audio-book"></i>
+                    <span>&lt;i class=&quot;skillgro-audio-book&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-financial-profit"></i>
+                    <span>&lt;i class=&quot;skillgro-financial-profit&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-development-plan"></i>
+                    <span>&lt;i class=&quot;skillgro-development-plan&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-smart-watch"></i>
+                    <span>&lt;i class=&quot;skillgro-smart-watch&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-browser"></i>
+                    <span>&lt;i class=&quot;skillgro-browser&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-heart"></i>
+                    <span>&lt;i class=&quot;skillgro-heart&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-mortarboard"></i>
+                    <span>&lt;i class=&quot;skillgro-mortarboard&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-stone"></i>
+                    <span>&lt;i class=&quot;skillgro-stone&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-label"></i>
+                    <span>&lt;i class=&quot;skillgro-label&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-menu"></i>
+                    <span>&lt;i class=&quot;skillgro-menu&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-satchel"></i>
+                    <span>&lt;i class=&quot;skillgro-satchel&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-law"></i>
+                    <span>&lt;i class=&quot;skillgro-law&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-profit"></i>
+                    <span>&lt;i class=&quot;skillgro-profit&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-ribbon"></i>
+                    <span>&lt;i class=&quot;skillgro-ribbon&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-time"></i>
+                    <span>&lt;i class=&quot;skillgro-time&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-book-1"></i>
+                    <span>&lt;i class=&quot;skillgro-book-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-magnifying-glass"></i>
+                    <span>&lt;i class=&quot;skillgro-magnifying-glass&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-heart-1"></i>
+                    <span>&lt;i class=&quot;skillgro-heart-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-group"></i>
+                    <span>&lt;i class=&quot;skillgro-group&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-review"></i>
+                    <span>&lt;i class=&quot;skillgro-review&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-anahata"></i>
+                    <span>&lt;i class=&quot;skillgro-anahata&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-search"></i>
+                    <span>&lt;i class=&quot;skillgro-search&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-users"></i>
+                    <span>&lt;i class=&quot;skillgro-users&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-gear"></i>
+                    <span>&lt;i class=&quot;skillgro-gear&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-avatar"></i>
+                    <span>&lt;i class=&quot;skillgro-avatar&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-sliders"></i>
+                    <span>&lt;i class=&quot;skillgro-sliders&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-file"></i>
+                    <span>&lt;i class=&quot;skillgro-file&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-arrow-up"></i>
+                    <span>&lt;i class=&quot;skillgro-arrow-up&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-closed-book"></i>
+                    <span>&lt;i class=&quot;skillgro-closed-book&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-graduation"></i>
+                    <span>&lt;i class=&quot;skillgro-graduation&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-right-arrow"></i>
+                    <span>&lt;i class=&quot;skillgro-right-arrow&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-heart-2"></i>
+                    <span>&lt;i class=&quot;skillgro-heart-2&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-instructor"></i>
+                    <span>&lt;i class=&quot;skillgro-instructor&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-arrow-up-1"></i>
+                    <span>&lt;i class=&quot;skillgro-arrow-up-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-tutorial"></i>
+                    <span>&lt;i class=&quot;skillgro-tutorial&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-lotus-flower"></i>
+                    <span>&lt;i class=&quot;skillgro-lotus-flower&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-bulb"></i>
+                    <span>&lt;i class=&quot;skillgro-bulb&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-presentation"></i>
+                    <span>&lt;i class=&quot;skillgro-presentation&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-flash"></i>
+                    <span>&lt;i class=&quot;skillgro-flash&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-web-programming"></i>
+                    <span>&lt;i class=&quot;skillgro-web-programming&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-development"></i>
+                    <span>&lt;i class=&quot;skillgro-development&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-hatha-yoga"></i>
+                    <span>&lt;i class=&quot;skillgro-hatha-yoga&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-exchange"></i>
+                    <span>&lt;i class=&quot;skillgro-exchange&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-customer-support"></i>
+                    <span>&lt;i class=&quot;skillgro-customer-support&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-investment"></i>
+                    <span>&lt;i class=&quot;skillgro-investment&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-email"></i>
+                    <span>&lt;i class=&quot;skillgro-email&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-next"></i>
+                    <span>&lt;i class=&quot;skillgro-next&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-fashion"></i>
+                    <span>&lt;i class=&quot;skillgro-fashion&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-group-1"></i>
+                    <span>&lt;i class=&quot;skillgro-group-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-placeholder"></i>
+                    <span>&lt;i class=&quot;skillgro-placeholder&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-photo-camera"></i>
+                    <span>&lt;i class=&quot;skillgro-photo-camera&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-diploma"></i>
+                    <span>&lt;i class=&quot;skillgro-diploma&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-diploma-1"></i>
+                    <span>&lt;i class=&quot;skillgro-diploma-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-cup"></i>
+                    <span>&lt;i class=&quot;skillgro-cup&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-happiness"></i>
+                    <span>&lt;i class=&quot;skillgro-happiness&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-idea"></i>
+                    <span>&lt;i class=&quot;skillgro-idea&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-video-camera"></i>
+                    <span>&lt;i class=&quot;skillgro-video-camera&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-database"></i>
+                    <span>&lt;i class=&quot;skillgro-database&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-book-2"></i>
+                    <span>&lt;i class=&quot;skillgro-book-2&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-phone-call"></i>
+                    <span>&lt;i class=&quot;skillgro-phone-call&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-brain"></i>
+                    <span>&lt;i class=&quot;skillgro-brain&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-finance"></i>
+                    <span>&lt;i class=&quot;skillgro-finance&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-webinar"></i>
+                    <span>&lt;i class=&quot;skillgro-webinar&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-atom"></i>
+                    <span>&lt;i class=&quot;skillgro-atom&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-next-1"></i>
+                    <span>&lt;i class=&quot;skillgro-next-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-money-bag"></i>
+                    <span>&lt;i class=&quot;skillgro-money-bag&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-calendar"></i>
+                    <span>&lt;i class=&quot;skillgro-calendar&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-graduating-student"></i>
+                    <span>&lt;i class=&quot;skillgro-graduating-student&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-tooth"></i>
+                    <span>&lt;i class=&quot;skillgro-tooth&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-video-tutorial"></i>
+                    <span>&lt;i class=&quot;skillgro-video-tutorial&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-mortarboard-1"></i>
+                    <span>&lt;i class=&quot;skillgro-mortarboard-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-idea-1"></i>
+                    <span>&lt;i class=&quot;skillgro-idea-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-presentation-1"></i>
+                    <span>&lt;i class=&quot;skillgro-presentation-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-three-o-clock-clock"></i>
+                    <span>&lt;i class=&quot;skillgro-three-o-clock-clock&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-customize"></i>
+                    <span>&lt;i class=&quot;skillgro-customize&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-certificate"></i>
+                    <span>&lt;i class=&quot;skillgro-certificate&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-calculator"></i>
+                    <span>&lt;i class=&quot;skillgro-calculator&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-verified"></i>
+                    <span>&lt;i class=&quot;skillgro-verified&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-graduated"></i>
+                    <span>&lt;i class=&quot;skillgro-graduated&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-shopping-cart"></i>
+                    <span>&lt;i class=&quot;skillgro-shopping-cart&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-diploma-2"></i>
+                    <span>&lt;i class=&quot;skillgro-diploma-2&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-mat"></i>
+                    <span>&lt;i class=&quot;skillgro-mat&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-user"></i>
+                    <span>&lt;i class=&quot;skillgro-user&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-demand"></i>
+                    <span>&lt;i class=&quot;skillgro-demand&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-dashboard"></i>
+                    <span>&lt;i class=&quot;skillgro-dashboard&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-bookmark-white"></i>
+                    <span>&lt;i class=&quot;skillgro-bookmark-white&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-question"></i>
+                    <span>&lt;i class=&quot;skillgro-question&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-clipboard"></i>
+                    <span>&lt;i class=&quot;skillgro-clipboard&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-marketing"></i>
+                    <span>&lt;i class=&quot;skillgro-marketing&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-chat"></i>
+                    <span>&lt;i class=&quot;skillgro-chat&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-list"></i>
+                    <span>&lt;i class=&quot;skillgro-list&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-settings"></i>
+                    <span>&lt;i class=&quot;skillgro-settings&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-logout"></i>
+                    <span>&lt;i class=&quot;skillgro-logout&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-dollar-currency-symbol"></i>
+                    <span>&lt;i class=&quot;skillgro-dollar-currency-symbol&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-quality"></i>
+                    <span>&lt;i class=&quot;skillgro-quality&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-group-2"></i>
+                    <span>&lt;i class=&quot;skillgro-group-2&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-badge"></i>
+                    <span>&lt;i class=&quot;skillgro-badge&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-twitter"></i>
+                    <span>&lt;i class=&quot;skillgro-twitter&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-maps-and-flags"></i>
+                    <span>&lt;i class=&quot;skillgro-maps-and-flags&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-email-1"></i>
+                    <span>&lt;i class=&quot;skillgro-email-1&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-next-2"></i>
+                    <span>&lt;i class=&quot;skillgro-next-2&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-back"></i>
+                    <span>&lt;i class=&quot;skillgro-back&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-edit"></i>
+                    <span>&lt;i class=&quot;skillgro-edit&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            <div class="image">
+                <p>
+                    <i class="flaticon skillgro-bin"></i>
+                    <span>&lt;i class=&quot;skillgro-bin&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="footer">
+        <div>Generated by <a href="https://www.flaticon.com">flaticon.com</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+[33mcommit 5b034f9eaf45d7d64a6364a3dbd6ec906757d01c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: IsraaBoulaares <israa.boulaares@esprit.tn>
+Date:   Thu Apr 10 04:06:22 2025 +0100
+
+    Resolved merge conflicts
+
+ EDADVANCE.git/HEAD                                 |   1 [32m+[m
+ EDADVANCE.git/config                               |  10 [32m++[m
+ EDADVANCE.git/description                          |   1 [32m+[m
+ EDADVANCE.git/hooks/applypatch-msg.sample          |  15 [32m++[m
+ EDADVANCE.git/hooks/commit-msg.sample              |  24 [32m+++[m
+ EDADVANCE.git/hooks/fsmonitor-watchman.sample      | 174 [32m+++++++++++++++++++++[m
+ EDADVANCE.git/hooks/post-update.sample             |   8 [32m+[m
+ EDADVANCE.git/hooks/pre-applypatch.sample          |  14 [32m++[m
+ EDADVANCE.git/hooks/pre-commit.sample              |  49 [32m++++++[m
+ EDADVANCE.git/hooks/pre-merge-commit.sample        |  13 [32m++[m
+ EDADVANCE.git/hooks/pre-push.sample                |  53 [32m+++++++[m
+ EDADVANCE.git/hooks/pre-rebase.sample              | 169 [32m++++++++++++++++++++[m
+ EDADVANCE.git/hooks/pre-receive.sample             |  24 [32m+++[m
+ EDADVANCE.git/hooks/prepare-commit-msg.sample      |  42 [32m+++++[m
+ EDADVANCE.git/hooks/push-to-checkout.sample        |  78 [32m+++++++++[m
+ EDADVANCE.git/hooks/sendemail-validate.sample      |  77 [32m+++++++++[m
+ EDADVANCE.git/hooks/update.sample                  | 128 [32m+++++++++++++++[m
+ EDADVANCE.git/info/exclude                         |   6 [32m+[m
+ EDADVANCE.git/info/refs                            |   4 [32m+[m
+ EDADVANCE.git/objects/info/commit-graph            | Bin [31m0[m -> [32m2072[m bytes
+ EDADVANCE.git/objects/info/packs                   |   2 [32m+[m
+ ...fd6ce3f3a46b682a4baf6f2b24a6ffbc91f19a10.bitmap | Bin [31m0[m -> [32m33736[m bytes
+ ...ck-fd6ce3f3a46b682a4baf6f2b24a6ffbc91f19a10.idx | Bin [31m0[m -> [32m209420[m bytes
+ ...k-fd6ce3f3a46b682a4baf6f2b24a6ffbc91f19a10.pack | Bin [31m0[m -> [32m38329570[m bytes
+ ...ck-fd6ce3f3a46b682a4baf6f2b24a6ffbc91f19a10.rev | Bin [31m0[m -> [32m29816[m bytes
+ EDADVANCE.git/packed-refs                          |   5 [32m+[m
+ Icon_                                              |   0
+ bfg-1.15.0.jar                                     | Bin [31m0[m -> [32m14721936[m bytes
+ 28 files changed, 897 insertions(+)
+
+[33mcommit 8165e043d4718fa514858d229fa8fa1ae5ec3e62[m
+Author: IsraaBoulaares <israa.boulaares@esprit.tn>
+Date:   Thu Apr 10 04:03:33 2025 +0100
+
+    Add e-learningV2 folder with user authentication backend
+
+ e-learningV2/.DS_Store                             |  Bin [31m0[m -> [32m8196[m bytes
+ e-learningV2/.gitignore                            |   14 [32m+[m
+ e-learningV2/app.js                                |  260 [32m++[m
+ e-learningV2/checkModels.js                        |   16 [32m+[m
+ e-learningV2/config/dbconnexion.json               |    3 [32m+[m
+ e-learningV2/config/passport.js                    |  184 [32m++[m
+ e-learningV2/controller/CourseController.js        |  359 [32m+++[m
+ e-learningV2/controller/QuestionController.js      |  162 [32m+[m
+ e-learningV2/controller/QuizController.js          |  210 [32m++[m
+ e-learningV2/controller/ResponseController.js      |  138 [32m+[m
+ e-learningV2/controller/ScoreQuizController.js     |  151 [32m+[m
+ e-learningV2/controller/UserController.js          |  690 [32m++++[m
+ e-learningV2/controller/models/CorrectAnswer.js    |    0
+ e-learningV2/controller/models/Course.js           |   19 [32m+[m
+ e-learningV2/controller/models/Question.js         |   13 [32m+[m
+ e-learningV2/controller/models/Quiz.js             |   20 [32m+[m
+ e-learningV2/controller/models/Response.js         |    9 [32m+[m
+ e-learningV2/controller/models/ScoreQuiz.js        |    9 [32m+[m
+ e-learningV2/controller/models/User.js             |   92 [32m+[m
+ .../controller/models/UserOTPVerification.js       |   14 [32m+[m
+ e-learningV2/controller/models/UserVerification.js |   11 [32m+[m
+ e-learningV2/models/Course.js                      |   22 [32m+[m
+ e-learningV2/models/Lesson.js                      |   15 [32m+[m
+ e-learningV2/models/Question.js                    |   13 [32m+[m
+ e-learningV2/models/Quiz.js                        |   23 [32m+[m
+ e-learningV2/models/Response.js                    |    9 [32m+[m
+ e-learningV2/models/ScoreQuiz.js                   |    9 [32m+[m
+ e-learningV2/models/User.js                        |   62 [32m+[m
+ e-learningV2/models/UserOTPVerification.js         |   14 [32m+[m
+ e-learningV2/models/UserVerification.js            |   11 [32m+[m
+ e-learningV2/package-lock.json                     | 3378 [32m++++++++++++++++++++[m
+ e-learningV2/package.json                          |   47 [32m+[m
+ e-learningV2/routes/Chatbot.js                     |   27 [32m+[m
+ e-learningV2/routes/Course.js                      |   39 [32m+[m
+ e-learningV2/routes/Questions.js                   |   21 [32m+[m
+ e-learningV2/routes/Quiz.js                        |   23 [32m+[m
+ e-learningV2/routes/Response.js                    |   21 [32m+[m
+ e-learningV2/routes/ScoreQuiz.js                   |   19 [32m+[m
+ e-learningV2/routes/User.js                        |   97 [32m+[m
+ e-learningV2/routes/config/dbconnexion.json        |    3 [32m+[m
+ e-learningV2/routes/config/passport.js             |  135 [32m+[m
+ e-learningV2/service-account.json                  |   13 [32m+[m
+ e-learningV2/uploads/course1.png                   |  Bin [31m0[m -> [32m114230[m bytes
+ e-learningV2/uploads/course3.png                   |  Bin [31m0[m -> [32m121477[m bytes
+ e-learningV2/uploads/default.jpg                   |  Bin [31m0[m -> [32m126621[m bytes
+ e-learningV2/views/verified.html                   |  114 [32m+[m
+ e-learningV2/zoom.service.js                       |   78 [32m+[m
+ 47 files changed, 6567 insertions(+)

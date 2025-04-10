@@ -1,0 +1,106 @@
+@use '../utils' as *;
+
+/*=============================
+    15. Video
+===============================*/
+.video {
+    &__area {
+        position: relative;
+        padding: 160px 0;
+        @media #{$lg} {
+            padding: 150px 0;
+        }
+        @media #{$md} {
+            padding: 140px 0;
+        }
+    }
+    &__bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        z-index: -1;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--tg-common-color-black-3);
+            opacity: .3;
+            z-index: -1;
+        }
+    }
+    &__content {
+        margin-left: 90px;
+        @media #{$lg} {
+            margin-left: 0;
+        }
+        @media #{$md} {
+            text-align: center;
+        }
+        & .title {
+            color: var(--tg-common-color-white);
+            font-size: 48px;
+            font-weight: 700;
+            text-transform: capitalize;
+            margin-bottom: 15px;
+            @media #{$xl} {
+                font-size: 45px;
+            }
+            @media #{$lg} {
+                font-size: 42px;
+            }
+            @media #{$md} {
+                font-size: 40px;
+            }
+        }
+        & p {
+            margin-bottom: 30px;
+            color: var(--tg-common-color-white);
+            text-transform: capitalize;
+        }
+    }
+    &__play-btn {
+        margin-left: 180px;
+        @media #{$md} {
+            margin: 0 0 50px;
+        }
+        & a {
+            width: 76px;
+            height: 76px;
+            @include flexbox();
+            align-items: center;
+            justify-content: center;
+            background: var(--tg-common-color-white);
+            @include border-radius(50%);
+            font-size: 25px;
+            color: var(--tg-common-color-black-3);
+            line-height: 0;
+            position: relative;
+            @media #{$md} {
+                margin: 0 auto;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 100%;
+                height: 100%;
+                border: 1px solid var(--tg-common-color-white);
+                border-radius: 50%;
+                transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+                animation: pulse-border 1500ms ease-out infinite;
+            }
+            &:hover {
+                background: var(--tg-theme-secondary);
+            }
+        }
+    }
+}
