@@ -1,0 +1,167 @@
+@use '../utils' as *;
+
+/*=============================
+    05. SignUp
+===============================*/
+.singUp {
+    &-wrap {
+        background: #F7F7FA;
+        border: 1px solid #E1E1E1;
+        border-radius: 8px;
+        padding: 30px 50px 40px;
+        @media #{$xs} {
+            padding: 30px 20px 30px;
+        }
+        @media #{$sm} {
+            padding: 30px 30px 30px;
+        }
+        & .title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            @media #{$xs} {
+                font-size: 26px;
+            }
+        }
+        & p {
+            margin-bottom: 25px;
+            @media #{$xs} {
+                & br {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.account {
+    &__social {
+        &-btn {
+            @include flexbox();
+            align-items: center;
+            justify-content: center;
+            background: var(--tg-common-color-white);
+            border: 1px solid #E1E1E1;
+            @include border-radius(5px);
+            font-size: 16px;
+            gap: 10px;
+            color: var(--tg-common-color-dark);
+            padding: 10px 20px;
+            &:hover {
+                color: var(--tg-theme-primary);
+                border-color: var(--tg-theme-primary);
+            }
+        }
+    }
+    &__divider {
+        position: relative;
+        text-align: center;
+        padding-block-end: 35px;
+        margin-block-start: 35px;
+        &::before {
+            content: "";
+            height: 1px;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background: #E1E1E1;
+            position: absolute;
+        }
+        & span {
+            font-size: 16px;
+            color: var(--tg-heading-color);
+            padding: 20px;
+            top: -35px;
+            left: 45%;
+            position: absolute;
+            background: #F7F7FA;
+        }
+    }
+    &__form {
+        & .form-grp {
+            margin-bottom: 20px;
+            & label {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1;
+                margin-bottom: 10px;
+            }
+            & input {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 16px;
+                color: var(--tg-heading-color);
+                border: 1px solid #E1E1E1;
+                background: var(--tg-common-color-white);
+                @include border-radius(5px);
+                line-height: 1;
+                @include transition(.3s);
+                &::placeholder {
+                    font-weight: 400;
+                    font-size: 16px;
+                    color: var(--tg-body-color);
+                    opacity: .8;
+                    text-transform: capitalize;
+                }
+                &:focus {
+                    border-color: var(--tg-theme-primary);
+                }
+            }
+        }
+        & .btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: 30px;
+        }
+    }
+    &__switch {
+        margin-top: 30px;
+        & p {
+            margin-bottom: 0;
+            @include flexbox();
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            & a {
+                color: var(--tg-theme-primary);
+                text-decoration: underline;
+                &:hover {
+                    color: var(--tg-theme-secondary);
+                }
+            }
+        }
+    }
+    &__check {
+        @include flexbox();
+        align-items: center;
+        gap: 15px;
+        justify-content: space-between;
+        &-remember {
+            @include flexbox();
+            gap: 5px;
+            & input {
+                width: 20px;
+                height: 20px;
+                margin-inline-end: 3px;
+                &:focus {
+                    box-shadow: none;
+                }
+                &:checked {
+                    background-color: var(--tg-theme-primary);
+                    border-color: var(--tg-theme-primary);
+                }
+            }
+            & label {
+                user-select: none;
+            }
+        }
+        &-forgot {
+            & a {
+                color: var(--tg-theme-primary);
+                font-size: 16px;
+                text-decoration: underline;
+                &:hover {
+                    color: var(--tg-theme-primary);
+                }
+            }
+        }
+    }
+}

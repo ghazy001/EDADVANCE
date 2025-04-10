@@ -1,0 +1,76 @@
+@use '../utils' as *;
+
+/*=============================
+    00. Select2 CSS
+===============================*/
+.tgmenu__search-form {
+    & .select2-container {
+        margin-left: -29px;
+    }
+    & .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-left: 37px;
+        padding-right: 28px;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right .75rem center;
+        background-size: 16px 12px;
+        font-size: 14px;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-heading-color);
+        font-weight: 500;
+    }
+    & .select2-container .select2-selection--single {
+        height: auto;
+    }
+}
+.course-category-dropdown {
+    background: var(--tg-common-color-white);
+    border: 1px solid var(--tg-border-2);
+    margin: 0 0;
+    & .select2-results__options {
+        margin-top: 7px;
+    }
+    & .select2-results__option {
+        padding: 1px 10px;
+        @include transition(.3s);
+    }
+    & .select2-results__option--selectable {
+        &:hover {
+            background: var(--tg-theme-primary);
+            color: var(--tg-common-color-white);
+        }
+    }
+}
+.tgmenu__search-form .select-grp {
+    z-index: 999;
+}
+.tgmenu__search-form .css-hlgwow{
+    padding: 0;
+}
+.tgmenu__search-form .css-t3ipsp-control ,
+.tgmenu__search-form .css-13cymwt-control {
+    border: none !important;
+    box-shadow: none;
+}
+.tgmenu__search-form .css-1u9des2-indicatorSeparator {
+    display: none;
+}
+.tgmenu__search-form .css-1xc3v61-indicatorContainer {
+    padding: 0px;
+}
+.tgmenu__search-form .course-category-dropdown__indicators.css-1wy0on6{
+    display: none;
+}
+.tgmenu__search-form .css-1jqq78o-placeholder {
+    padding-left: 6px;
+    padding-right: 28px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    font-size: 14px;
+    font-family: var(--tg-heading-font-family);
+    color: var(--tg-heading-color);
+    font-weight: 500;
+}
+// .css-mohuvp-dummyInput-DummyInput

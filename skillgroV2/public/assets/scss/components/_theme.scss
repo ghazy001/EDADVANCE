@@ -1,0 +1,278 @@
+@use '../utils' as *;
+/*============================================
+
+   Theme Name: SkillGro - Online Courses & Education Template
+   Author : ThemeGenix
+   Support: themegenix@gmail.com
+   Description: SkillGro - Online Courses & Education Template
+   Version: 1.0
+
+==============================================*/
+
+/* CSS Index
+==============================================
+
+    01. Theme Default CSS
+    02. Header
+    03. Mobile Menu
+    04. Banner
+    05. Slider
+    06. Brand
+    07. About
+    08. Courses
+    09. Categories
+    10. Online
+    11. Testimonial
+    12. Instructor
+    13. Mentor
+    14. CTA
+    15. Fact
+    16. Events
+    17. Quick Action
+    18. FAQ
+    19. Shop
+    20. Blog
+    21. Newsletter
+    22. Contact
+    23. 404 Error
+    24. Footer
+
+==============================================*/
+
+
+
+/*============================================
+/*  01. Theme Default CSS
+==============================================*/
+
+@import url($font-url);
+
+
+/*=============================
+	Typography css start
+===============================*/
+body {
+	font-family: var(--tg-body-font-family);
+	font-size: var(--tg-body-font-size);
+	font-weight: var(--tg-fw-regular);
+	color: var(--tg-body-color);
+	line-height: var(--tg-body-line-height);
+}
+img,
+.img {
+	max-width: 100%;
+	height: auto;
+	@include transition(.3s);
+}
+a,
+button {
+	color: var(--tg-theme-primary);
+	outline: none;
+	text-decoration: none;
+	@include transition(.3s);
+}
+a:focus,
+.btn:focus,
+.button:focus {
+	text-decoration: none;
+	outline: none;
+	@include box-shadow(none);
+}
+a:hover,
+button:hover {
+	color: var(--tg-theme-secondary);
+	text-decoration: none;
+}
+button:focus,
+input:focus,
+input:focus,
+textarea,
+textarea:focus {
+	outline: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--tg-heading-font-family);
+	color: var(--tg-heading-color);
+	margin-top: 0px;
+	font-weight: var(--tg-fw-semi-bold);
+	line-height: var(--tg-heading-line-height);
+	text-transform: unset;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+	color: inherit;
+}
+h1 {
+	font-size: 2.5rem;
+}
+h2 {
+	font-size: 2rem;
+}
+h3 {
+	font-size: 1.75rem;
+}
+h4 {
+	font-size: 1.5rem;
+}
+h5 {
+	font-size: 1.25rem;
+}
+h6 {
+	font-size: 1rem;
+}
+.list-wrap {
+	margin: 0px;
+	padding: 0px;
+	& li {
+		list-style: none;
+	}
+}
+p {
+	font-family: var(--tg-body-font-family);
+	font-size: var(--tg-body-font-size);
+	line-height: var(--tg-body-line-height);
+	font-weight: var(--tg-fw-regular);
+	color: var(--tg-body-color);
+	margin-bottom: 15px;
+}
+hr {
+	border-bottom: 1px solid var(--tg-common-color-gray);
+	border-top: 0 none;
+	margin: 30px 0;
+	padding: 0;
+}
+label {
+	color: var(--tg-heading-color);
+	cursor: pointer;
+	font-size: var(--tg-body-font-size);
+	font-weight: var(--tg-fw-regular);
+}
+
+input[type="color"] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: none;
+	border: 0;
+	cursor: pointer;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	border-radius: 50%;
+}
+
+*::-moz-selection {
+	background: var(--tg-theme-primary);
+	color: var(--tg-common-color-white);
+	text-shadow: none;
+}
+::-moz-selection {
+	background: var(--tg-theme-primary);
+	color: var(--tg-common-color-white);
+	text-shadow: none;
+}
+::selection {
+	background: var(--tg-theme-primary);
+	color: var(--tg-common-color-white);
+	text-shadow: none;
+}
+
+/*=============================
+    - Input Placeholder
+===============================*/
+input,
+textarea {
+    color: var(--tg-body-color);
+}
+*::-moz-placeholder {
+	color: var(--tg-body-color);
+	font-size: var(--tg-body-font-size);
+	opacity: 1;
+}
+*::placeholder {
+	color: var(--tg-body-color);
+	font-size: var(--tg-body-font-size);
+	opacity: 1;
+}
+
+/*=============================
+    - Common Classes
+===============================*/
+.fix {
+    overflow:hidden
+}
+.clear {
+    clear: both;
+}
+
+/*=============================
+    - Bootstrap Custom
+=============================*/
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.row {
+    --bs-gutter-x: 30px;
+}
+.gutter-y-30 {
+  	--bs-gutter-y: 30px;
+}
+.gx-0 {
+	--bs-gutter-x: 0;
+}
+.gutter-20 {
+    --bs-gutter-x: 20px;
+}
+.container {
+    max-width: 1440px;
+	@media #{$xl} {
+        max-width: 1320px;
+    }
+	@media #{$lg} {
+        max-width: 960px;
+    }
+	@media #{$md} {
+        max-width: 720px;
+    }
+	@media #{$xs} {
+        max-width: 100%;
+    }
+	@media #{$sm} {
+        max-width: 540px;
+    }
+}
+.custom-container {
+    max-width: 1680px;
+	@media #{$xxl} {
+        max-width: 1680px;
+    }
+	@media #{$xl} {
+        max-width: 1320px;
+    }
+	@media #{$lg} {
+        max-width: 960px;
+    }
+	@media #{$md} {
+        max-width: 720px;
+    }
+	@media #{$xs} {
+        max-width: 100%;
+    }
+	@media #{$sm} {
+        max-width: 540px;
+    }
+}
+
+.include-bg{
+	@include background();
+}

@@ -1,0 +1,167 @@
+@use '../utils' as *;
+
+/*=============================
+	04. Search
+===============================*/
+.search {
+    &__popup {
+        padding-top: 70px;
+        padding-bottom: 100px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: var(--tg-common-color-white);
+        backdrop-filter: blur(10px);
+        z-index: 99;
+        -webkit-transform: translateY(calc(-100% - 80px));
+        -moz-transform: translateY(calc(-100% - 80px));
+        -ms-transform: translateY(calc(-100% - 80px));
+        -o-transform: translateY(calc(-100% - 80px));
+        transform: translateY(calc(-100% - 80px));
+        -webkit-transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        -moz-transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition-delay: 0.5s;
+        &.search-opened {
+            -webkit-transform: translateY(0%);
+            -moz-transform: translateY(0%);
+            -ms-transform: translateY(0%);
+            -o-transform: translateY(0%);
+            transform: translateY(0%);
+            transition-delay: 0s;
+            z-index: 99999999;
+            & .search__input {
+                -webkit-transform: translateY(0px);
+                -moz-transform: translateY(0px);
+                -ms-transform: translateY(0px);
+                -o-transform: translateY(0px);
+                transform: translateY(0px);
+                opacity: 1;
+                transition-delay: 0.3s;
+                &::after {
+                    width: 100%;
+                    transition-delay: 0.5s;
+                }
+            }
+        }
+    }
+    &__input {
+        position: relative;
+        height: 80px;
+        -webkit-transform: translateY(-40px);
+        -moz-transform: translateY(-40px);
+        -ms-transform: translateY(-40px);
+        -o-transform: translateY(-40px);
+        transform: translateY(-40px);
+        @include transition(.3s);
+        transition-delay: 0.5s;
+        opacity: 0;
+        &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 1px;
+            background-color: var(--tg-theme-primary);
+            transition-delay: 0.3s;
+            @include transition(.3s);
+        }
+        & input {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+            font-size: 24px;
+            color: var(--tg-heading-color);
+            border-bottom: 1px solid transparent;
+            padding: 0;
+            padding-right: 30px;
+            &::placeholder {
+                font-size: 24px;
+            }
+        }
+        & button {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--tg-theme-primary);
+            border: none;
+            padding: 0 0;
+            background: transparent;
+        }
+        &-two {
+            &::after {
+                background: var(--tg-theme-primary-two);
+            }
+            & button {
+                color: var(--tg-theme-primary-two);
+            }
+        }
+    }
+    &__close {
+        position: absolute;
+        top: 10%;
+        right: 2%;
+        z-index: 2;
+    }
+    &-close-btn {
+        margin: 0;
+        padding: 0;
+        border: none;
+        color: var(--tg-theme-primary);
+        cursor: pointer;
+        background: transparent;
+        &-two {
+            color: var(--tg-theme-primary-two);
+        }
+    }
+    &-popup-overlay {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 4;
+        @include transition(.3s);
+        transition-delay: 0.5s;
+        opacity: 0;
+        visibility: hidden;
+        background: #000d25;
+        &.search-popup-overlay-open {
+            opacity: .55;
+            visibility: visible;
+            transition-delay: 0s;
+        }
+    }
+}
+
+.search-input-field {
+    &~.search-focus-border {
+        position: absolute;
+        bottom: 0;
+        left: auto;
+        right: 0;
+        width: 0;
+        height: 1px;
+        background-color: var(--tg-theme-primary);
+        transition: all 0.5s;
+    }
+    &:focus {
+        &~.search-focus-border{
+            width: 100%;
+            left: 0;
+            right: auto;
+            transition: all .5s;
+        }
+    }
+}

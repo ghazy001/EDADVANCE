@@ -1,0 +1,66 @@
+@use '../utils' as *;
+
+/*=============================
+    23. 404 Error
+===============================*/
+.error {
+    &-area {
+        padding: 120px 0;
+        @media #{$xl} {
+            padding: 100px 0;
+        }
+    }
+    &-img {
+        text-align: center;
+        width: 648px;
+        height: 323px;
+        margin: 0 auto 65px;
+        @media #{$xl} {
+            margin-bottom: 45px;
+        }
+        @media #{$md} {
+            margin-bottom: 40px;
+        }
+        @media #{$xs} {
+            margin-bottom: 30px;
+            width: 100%;
+            height: 100%;
+        }
+        & svg {
+            width: 100%;
+            height: 100%;
+            color: var(--tg-theme-secondary);
+        }
+    }
+    &-content {
+        & .title {
+            margin-bottom: 60px;
+            font-weight: 700;
+            font-size: 40px;
+            letter-spacing: -1px;
+            @media #{$lg} {
+                margin-bottom: 35px;
+                font-size: 35px;
+            }
+            @media #{$xs} {
+                font-size: 30px;
+                margin-bottom: 30px;
+                letter-spacing: 0;
+            }
+            & span {
+                display: block;
+                margin-top: 10px;
+                @media #{$xs} {
+                    margin-top: 5px;
+                }
+            }
+        }
+        & .tg-button-wrap {
+            justify-content: center;
+        }
+    }
+}
+p.form_error{
+    color: red;
+    font-size: 14px;
+}

@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "flaticon_tg_default";
+    src: url("../fonts/flat-icon/flaticon_tg_default.ttf?e3deef4d25a8a816ffcc2046eac5a266") format("truetype"),
+url("../fonts/flat-icon/flaticon_tg_default.woff?e3deef4d25a8a816ffcc2046eac5a266") format("woff"),
+url("../fonts/flat-icon/flaticon_tg_default.woff2?e3deef4d25a8a816ffcc2046eac5a266") format("woff2"),
+url("../fonts/flat-icon/flaticon_tg_default.eot?e3deef4d25a8a816ffcc2046eac5a266#iefix") format("embedded-opentype"),
+url("../fonts/flat-icon/flaticon_tg_default.svg?e3deef4d25a8a816ffcc2046eac5a266#flaticon_tg_default") format("svg");
+}
+
+i[class^="tg-flaticon-"]:before, i[class*=" tg-flaticon-"]:before {
+    font-family: flaticon_tg_default !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+[class*="tg-flaticon-"] {
+    display: block;
+    line-height: 0;
+}
+
+.tg-flaticon-menu:before {
+    content: "\f101";
+}
+.tg-flaticon-menu-1:before {
+    content: "\f102";
+}
+.tg-flaticon-dots-menu:before {
+    content: "\f103";
+}
+.tg-flaticon-menu-2:before {
+    content: "\f104";
+}
+.tg-flaticon-close:before {
+    content: "\f105";
+}
+.tg-flaticon-close-1:before {
+    content: "\f106";
+}
+.tg-flaticon-arrowhead-up:before {
+    content: "\f107";
+}
+.tg-flaticon-arrow-up:before {
+    content: "\f108";
+}
+.tg-flaticon-plus:before {
+    content: "\f109";
+}
+.tg-flaticon-minus-sign:before {
+    content: "\f10a";
+}

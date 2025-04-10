@@ -1,0 +1,288 @@
+@use '../utils' as *;
+
+/*=============================
+    15. Fact
+===============================*/
+.fact {
+    &__bg {
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding: 130px 0;
+        z-index: 1;
+        @media #{$md} {
+            padding: 130px 0 100px;
+        }
+        @media #{$xs} {
+            padding: 100px 0 70px;
+        }
+    }
+    &__inner {
+        &-wrap {
+            background: var(--tg-common-color-blue-2);
+            padding: 94px 70px 64px;
+            @include border-radius(40px);
+            @include box-shadow(0px 25px 70px 0px rgba(40, 37, 104, 0.40));
+            z-index: 3;
+            position: relative;
+            @media #{$lg} {
+                padding: 60px 40px 30px;
+            }
+            @media #{$xs} {
+                padding: 50px 25px 20px;
+            }
+            & .row {
+                & [class*="col-"] {
+                    &:last-child {
+                        & .fact__item {
+                            &::before {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            &-two {
+                background: var(--tg-common-color-blue-2);
+                @include border-radius(20px);
+                padding: 85px 380px 60px 85px;
+                @include flexbox();
+                align-items: center;
+                gap: 75px;
+                position: relative;
+                z-index: 3;
+                overflow: hidden;
+                @media #{$xl} {
+                    padding: 85px 360px 60px 70px;
+                    gap: 50px;
+                }
+                @media #{$lg} {
+                    padding: 70px 50px 50px 50px;
+                }
+                @media #{$md} {
+                    padding: 60px 40px 30px 40px;
+                    flex-wrap: wrap;
+                    gap: 0;
+                    justify-content: center;
+                }
+                @media #{$xs} {
+                    padding: 60px 30px 30px 30px;
+                }
+                & .section__title {
+                    width: 46%;
+                    flex: 0 0 auto;
+                    @media #{$lg} {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    &__content-wrap {
+        width: 80%;
+        @media #{$xl} {
+            width: 88%;
+        }
+        @media #{$lg} {
+            width: 100%;
+        }
+        @media #{$md} {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        & .title {
+            margin-bottom: 15px;
+            font-size: 48px;
+            text-transform: capitalize;
+            font-weight: 700;
+            @media #{$lg} {
+                font-size: 42px;
+            }
+            @media #{$xs} {
+                font-size: 38px;
+            }
+            & span {
+                position: relative;
+                display: inline-block;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 5px;
+                    width: 100%;
+                    height: 16px;
+                    background: var(--tg-theme-secondary);
+                    z-index: -1;
+                }
+            }
+        }
+        & p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+    }
+    &__item {
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            right: -15px;
+            top: -10%;
+            width: 2px;
+            height: 108px;
+            @include border-radius(2px);
+            background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+            @media #{$md} {
+                display: none;
+            }
+        }
+        & .count {
+            margin-bottom: 10px;
+            @include flexbox();
+            align-items: center;
+            justify-content: center;
+            color: var(--tg-common-color-white);
+            font-size: 56px;
+            line-height: .84;
+            font-family: var(--tg-body-font-family);
+            @media #{$lg} {
+                font-size: 48px;
+            }
+            @media #{$xs} {
+                font-size: 30px;
+            }
+            @media #{$sm} {
+                font-size: 36px;
+            }
+        }
+        & p {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: var(--tg-common-color-white);
+            line-height: 1.2;
+        }
+        &-wrap {
+            @include flexbox();
+            gap: 120px;
+            @media #{$md} {
+                gap: 60px;
+            }
+            @media #{$xs} {
+                gap: 30px;
+            }
+            & .fact__item {
+                &::before {
+                    right: -60px;
+                    top: -9%;
+                    @media #{$md} {
+                        display: none;
+                    }
+                }
+                &:last-child {
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+        }
+        &-two {
+            background: var(--tg-common-color-white);
+            box-shadow: 0 0 30px 0 #f0f0f0;
+            border: 1px solid #e3e3e3;
+            @include border-radius(15px);
+            padding: 73px 20px;
+            @media #{$xl} {
+                padding: 60px 20px;
+            }
+            @media #{$lg} {
+                padding: 40px 20px;
+            }
+            & .count {
+                color: var(--tg-theme-primary);
+                font-size: 70px;
+                line-height: .8;
+                font-weight: 700;
+                @include flexbox();
+                align-items: center;
+                font-family: var(--tg-heading-font-family);
+                @media #{$lg} {
+                    font-size: 48px;
+                }
+            }
+            & p {
+                color: var(--tg-body-color);
+                font-weight: 400;
+            }
+        }
+    }
+    &__img-wrap {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        @media #{$lg} {
+            display: none;
+        }
+        & img {
+            right: 30px;
+            position: relative;
+        }
+        & .shape {
+            &-one {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+            &-two {
+                & .svg-icon {
+                    width: 40px;
+                    height: 40px;
+                    position: absolute;
+                    left: -7px;
+                    top: -22px;
+                    z-index: -1;
+                    & svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+    &__shape-wrap {
+        & img {
+            position: absolute;
+            z-index: -1;
+            &:nth-child(1) {
+                bottom: 16%;
+                left: 35%;
+                @media #{$md} {
+                    bottom: 4%;
+                    left: 15%;
+                }
+                @media #{$xs} {
+                    bottom: 1%;
+                    left: 9%;
+                    width: 50px;
+                }
+            }
+            &:nth-child(2) {
+                right: 9%;
+                top: 13%;
+                -webkit-animation-duration: 15s;
+                animation-duration: 15s;
+                @media #{$xl} {
+                    right: 3%;
+                    top: 12%;
+                }
+                @media #{$xs} {
+                    right: 3%;
+                    top: 2%;
+                }
+            }
+        }
+    }
+}
