@@ -1,0 +1,252 @@
+    /* Global Styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 800;
+        color: #2c3e50;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: linear-gradient(135deg, #0984e3, #e74c3c);
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: fadeIn 1s ease-out;
+    }
+
+    /* Repo Cards Container */
+    .repo-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .repo-card {
+        width: 100%;
+        max-width: 1000px; /* Ajustez selon la mise en page souhaitée */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .repo-card:hover {
+        transform: scale(1.02);
+    }
+
+
+    .repo-card:active {
+        transform: translateY(-3px);
+    }
+
+    /* Card Image */
+    .repo-image {
+        width: 32px; /* Fixed space */
+        height: 32px; /* Fixed space */
+        image-rendering: auto; /* Corrected property name */
+        object-fit: contain; /* Changed to contain for logo clarity */
+        transition: all 0.4s ease-in-out;
+        border-radius: 15px 15px 0 0;
+    }
+    .repo-card:hover .repo-image {
+        transform: scale(1.08);
+        opacity: 0.85;
+    }
+
+    /* Card Content */
+    .card-content {
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 0 0 15px 15px;
+    }
+
+    /* Repo Info */
+    .repo-info {
+        text-align: center;
+    }
+
+    /* Repo Name */
+    .repo-name {
+        font-size: 26px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .repo-name:hover {
+        color: #0984e3;
+    }
+
+    /* Repo Language */
+    .repo-language {
+        color: #7f8c8d;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    /* Personalized Message */
+    .personalized-message {
+        font-style: italic;
+        font-size: 18px;
+        color: #e74c3c;
+        margin-bottom: 15px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Course List */
+    .course-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    /* Course Item */
+    .course-item {
+        padding: 18px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #f39c12, #e67e22);
+        margin-bottom: 15px;
+        transition: all 0.4s ease-in-out;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .course-item:hover {
+        transform: translateX(10px) scale(1.02);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #e67e22, #f39c12);
+    }
+
+    .course-item h6 {
+        font-weight: 700;
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .course-lang {
+        color: #f1c40f;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .course-description {
+        color: #f8f9fa;
+        margin: 10px 0;
+        line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 30px 0;
+        text-align: center;
+        border-top: 3px solid #0984e3;
+    }
+
+    /* Course Footer */
+    .course-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        color: #ecf0f1;
+    }
+
+    .rating {
+        font-size: 16px;
+        font-weight: 600;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .rating:hover {
+        color: #e74c3c;
+    }
+
+    .skill-level {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 25px;
+        background-color: #ecf0f1;
+        text-transform: capitalize;
+    }
+
+    .skill-level.beginner {
+        background-color: #f39c12;
+        color: #2c3e50;
+    }
+
+    .skill-level.intermediate {
+        background-color: #2980b9;
+        color: #fff;
+    }
+
+    .skill-level.expert {
+        background-color: #e74c3c;
+        color: #fff;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Personalized Message */
+    .personalized-message {
+        font-style: italic;
+        font-size: 18px;
+        color: #e74c3c;
+        margin-bottom: 15px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* No Courses Available */
+    .no-courses-message {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        background-color: purple;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        margin-top: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .no-courses-message:hover {
+        background-color: #0d6efd;
+    }
+
+    /* Loading Courses Message */
+    .loading-courses {
+        font-size: 18px;
+        color: #95a5a6;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 20px;
+    }
+

@@ -1,0 +1,104 @@
+/* Leaderboard.module.css (Improved for clarity and readability) */
+.leaderboard {
+  background: linear-gradient(135deg, #2a2a72 0%, #3b3b98 100%);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 900px;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.userIcon,
+.icons span {
+  font-size: 1.3rem;
+  color: #ffffffcc;
+}
+
+.userRank {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.3s;
+}
+
+.userRank:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.topRank {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+}
+
+.rank {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.star,
+.circle {
+  font-size: 1.8rem;
+  margin-right: 8px;
+}
+
+.userInfo {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userDetails p {
+  margin: 2px 0;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.score {
+  font-size: 1rem;
+  color: #c0dfff;
+  margin-top: 4px;
+}
+
+.stats {
+  font-size: 0.9rem;
+  color: #d0e1ff;
+}
+
+.profilePic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffffcc;
+}
+
+.noUsers {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ffffffaa;
+}

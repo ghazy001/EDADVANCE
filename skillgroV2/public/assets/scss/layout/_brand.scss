@@ -1,0 +1,58 @@
+@use '../utils' as *;
+
+/*=============================
+    06. Brand
+===============================*/
+.brand {
+    &-area {
+        background: var(--tg-common-color-black);
+        padding: 20px 0;
+        & .container-fluid {
+            padding: 0 0;
+        }
+        &-two {
+            transform: rotate(-3.5deg);
+            position: relative;
+            z-index: 2;
+            margin-top: -60px;
+            @media #{$xs} {
+                transform: rotate(0);
+            }
+        }
+    }
+    &__item {
+        @include flexbox();
+        align-items: center;
+        gap: 0 35px;
+        margin-left: 35px !important;
+        & a {
+            @include flexbox();
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            &:hover {
+                & img {
+                    opacity: .7;
+                }
+            }
+        }
+        &-two {
+            min-height: 46px;
+            @include flexbox();
+            align-items: center;
+            justify-content: center;
+            & img {
+                cursor: pointer;
+            }
+        }
+    }
+}
+.marquee_mode {
+    overflow: hidden;
+    position: relative;
+    & .js-marquee {
+        @include flexbox();
+        align-items: center;
+        gap: 0 35px;
+    }
+}
