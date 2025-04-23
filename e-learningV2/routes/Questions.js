@@ -10,6 +10,7 @@ const {
 } = require("../controller/QuestionController"); // Path to your controller
 
 router.use(express.json());
+router.post("/addQuestions/:quizId", addQuestionToQuiz);
 
 router.get("/getAllQuestions", getAllQuestions);
 router.get("/:id", getQuestionById);

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const Quiz = require("../models/Quiz");
 const Course = require("../models/Course");
+const User = require("../models/User"); 
 
 async function addQuiz(req, res) {
   try {
@@ -44,56 +45,57 @@ async function getAllQuizzes(req, res) {
     }
 }
 
-async function getQuizById(req, res) {
+  async function getQuizById(req, res) {
+    try {
+      const quizId = req.params.id;
+      console.log(`Attempting to fetch quiz with ID: ${quizId}`);
+
+      if (!quizId.match(/^[0-9a-fA-F]{24}$/)) {
+        console.log(`Invalid ID format: ${quizId}`);
+        return res.status(400).json({ status: "FAILED", message: "Invalid Quiz ID format" });
+      }
+
+      const quiz = await Quiz.findById(quizId).populate([
+        { path: "cours" },
+        { path: "scores" },
+        {
+          path: "questions",
+          populate: {
+            path: "reponses", // assuming each Question has an array of Reponse IDs
+          },
+        },
+      ]);
+
+      if (!quiz) {
+        console.log(`Quiz not found in database for ID: ${quizId}`);
+        return res.status(404).json({ status: "FAILED", message: "Quiz not found" });
+      }
+
+      console.log(`Fetched quiz successfully:`, quiz);
+      res.status(200).json({ status: "SUCCESS", message: "Quiz retrieved successfully", data: quiz });
+    } catch (error) {
+      console.error(`Error fetching quiz: ${error.message}`, error);
+      res.status(500).json({ status: "FAILED", message: error.message });
+    }
+  }
+
+async function getQuizzesByCourse(req, res) {
   try {
-    const quizId = req.params.id;
-    console.log(`Attempting to fetch quiz with ID: ${quizId}`);
-
-    if (!quizId.match(/^[0-9a-fA-F]{24}$/)) {
-      console.log(`Invalid ID format: ${quizId}`);
-      return res.status(400).json({ status: "FAILED", message: "Invalid Quiz ID format" });
+    if (!req.params.idCours.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ status: "FAILED", message: "Invalid Course ID format" });
     }
-
-    const quiz = await Quiz.findById(quizId).populate({
-      path: "cours scores questions",
-      populate: { path: "reponses" },
-    });
-
-    if (!quiz) {
-      console.log(`Quiz not found in database for ID: ${quizId}`);
-      return res.status(404).json({ status: "FAILED", message: "Quiz not found" });
-    }
-
-    console.log(`Fetched quiz successfully:`, quiz);
-    res.status(200).json({ status: "SUCCESS", message: "Quiz retrieved successfully", data: quiz });
+    const quiz = await Quiz.find({
+      $or: [
+        { cours: req.params.idCours },
+        { coursId: req.params.idCours }
+      ]
+    }).populate("cours questions scores");
+    res.status(200).json({ status: "SUCCESS", message: "Quiz retrieved successfully", data: quiz
+     });
   } catch (error) {
-    console.error(`Error fetching quiz: ${error.message}`, error);
     res.status(500).json({ status: "FAILED", message: error.message });
   }
 }
-const getQuizzesByCourse = async (req, res) => {
-  try {
-      console.log("Nom de la collection utilisée par le modèle Quiz:", Quiz.collection.collectionName);
-      console.log("Paramètre idCours reçu:", req.params.idCours);
-      const courseId = new mongoose.Types.ObjectId(req.params.idCours);
-      console.log("Recherche des quiz pour courseId:", courseId);
-
-      const quizzes = await Quiz.find({ cours: courseId }).populate("cours questions scores");
-      console.log("Quiz trouvés:", quizzes);
-
-      res.status(200).json({
-          status: "SUCCESS",
-          message: "Quizzes retrieved successfully",
-          data: quizzes
-      });
-  } catch (error) {
-      console.error("Erreur lors de la récupération des quiz:", error);
-      res.status(500).json({
-          status: "FAILED",
-          message: error.message
-      });
-  }
-};
 async function updateQuiz(req, res) {
     try {
         if (!req.params.idQuiz.match(/^[0-9a-fA-F]{24}$/)) {
@@ -136,70 +138,100 @@ async function deleteQuiz(req, res) {
 }
 // Submit quiz answers
 async function submitQuiz(req, res) {
-    try {
-      const { quizId, userId } = req.params;
-      const { userAnswers, isTimedOut } = req.body;
-  
-      console.log("Received quiz submission:", { quizId, userId, userAnswers, isTimedOut });
-  
-      // Validate quizId and userId
-      if (!mongoose.Types.ObjectId.isValid(quizId)) {
-        console.log("Invalid quizId format:", quizId);
-        return res.status(400).json({ status: "FAILED", message: "Invalid quiz ID format" });
-      }
-  
-      if (!userId) {
-        console.log("User ID is missing");
-        return res.status(400).json({ status: "FAILED", message: "User ID is required" });
-      }
-  
-      // Find the quiz
-      console.log("Querying quiz with ID:", quizId);
-      const quiz = await Quiz.findById(quizId).populate({
-        path: "questions",
-        populate: { path: "reponses" },
-      });
-  
-      console.log("Found quiz:", quiz);
-  
-      if (!quiz) {
-        return res.status(404).json({ status: "FAILED", message: "Quiz not found" });
-      }
-  
-      // Calculate the score
-      console.log("Calculating score for questions:", quiz.questions);
-      let totalScore = 0;
-      for (const question of quiz.questions) {
-        const userAnswer = userAnswers[question._id];
-        console.log(`Question ${question._id}: userAnswer=${userAnswer}, correctAnswer=${question.correctAnswer}`);
-        if (userAnswer && userAnswer === question.correctAnswer) {
-          totalScore += question.score || 0;
-        }
-      }
-  
-      // Store the score in the quiz's scores array
-      const scoreEntry = {
-        userId,
-        score: totalScore,
-        submittedAt: new Date(),
-        isTimedOut,
-      };
-      console.log("Adding score entry:", scoreEntry);
-      quiz.scores.push(scoreEntry);
-  
-      console.log("Saving quiz with new score...");
-      await quiz.save();
-  
-      res.status(200).json({
-        status: "SUCCESS",
-        message: "Quiz submitted successfully",
-        data: { score: totalScore },
-      });
-    } catch (error) {
-      console.error("Error submitting quiz:", error);
-      res.status(500).json({ status: "FAILED", message: "Internal server error" });
+  try {
+    const { quizId, userId } = req.params;
+    const { userAnswers, isTimedOut } = req.body;
+
+    // Validate quizId
+    if (!mongoose.Types.ObjectId.isValid(quizId)) {
+      return res.status(400).json({ status: "FAILED", message: "Invalid quiz ID format" });
     }
+
+    // Convert userId to ObjectId using 'new' keyword
+    const validUserId = mongoose.Types.ObjectId.isValid(userId) ? new mongoose.Types.ObjectId(userId) : userId;
+
+    // Fetch quiz with fully populated questions and responses
+    const quiz = await Quiz.findById(quizId).populate({
+      path: "questions",
+      populate: {
+        path: "reponses",
+        select: "texte" // Make sure to get the answer text
+      }
+    });
+
+    if (!quiz) {
+      return res.status(404).json({ status: "FAILED", message: "Quiz not found" });
+    }
+
+    // Validate userAnswers count
+    if (!userAnswers || Object.keys(userAnswers).length !== quiz.questions.length) {
+      return res.status(400).json({ status: "FAILED", message: "Missing answers for some questions" });
+    }
+
+    let totalScore = 0;
+    const answerDetails = [];
+
+    for (const question of quiz.questions) {
+      const questionIdStr = question._id.toString();
+      const submittedAnswerId = userAnswers[questionIdStr];
+
+      if (!submittedAnswerId || !mongoose.Types.ObjectId.isValid(submittedAnswerId)) {
+        continue;
+      }
+
+      // Find the submitted answer text
+      const submittedAnswer = question.reponses.find(r => r._id.toString() === submittedAnswerId);
+      if (!submittedAnswer) {
+        continue; // If no matching answer found, skip
+      }
+
+      // Correct comparison: compare the answer text, not the ID
+      const isCorrect = String(submittedAnswer.texte) === String(question.correctAnswer);
+
+      if (isCorrect) {
+        totalScore += question.score || 0;
+      }
+
+      answerDetails.push({
+        questionId: question._id,
+        submittedAnswerId,
+        isCorrect
+      });
+    }
+
+    // Save quiz result
+    quiz.scores.push({
+      userId: validUserId,
+      score: totalScore,
+      submittedAt: new Date(),
+      isTimedOut
+    });
+
+    await quiz.save();
+
+    // Update user's totalScore
+    await User.findByIdAndUpdate(
+      validUserId,
+      { $inc: { totalScore: totalScore } }, // Increment totalScore by the quiz score
+      { new: true }
+    );
+
+    res.status(200).json({
+      status: "SUCCESS",
+      message: "Quiz submitted successfully",
+      data: {
+        score: totalScore,
+        totalQuestions: quiz.questions.length,
+        correctAnswers: answerDetails.filter(a => a.isCorrect).length,
+        details: answerDetails
+      }
+    });
+  } catch (error) {
+    console.error("Quiz submission error:", error);
+    res.status(500).json({ status: "FAILED", message: "Internal server error" });
   }
+}
+
 module.exports = {
     addQuiz,
     getAllQuizzes,

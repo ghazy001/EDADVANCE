@@ -1,8 +1,8 @@
 require("dotenv").config();
 const ScoreQuiz = require("../models/ScoreQuiz"); // Path to your ScoreQuiz model
-const Quiz = require("../models/Quiz");           // Path to your Quiz model
 const User = require("../models/User");           // Path to your User model
-const Question = require("../models/Question");   // Path to your Question model
+const Question = require("../models/Question");  
+const Quiz = require("../models/Quiz");
 
 // Submit quiz score
 async function submitQuiz(req, res) {

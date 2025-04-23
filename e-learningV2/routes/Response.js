@@ -11,11 +11,11 @@ const {
 
 router.use(express.json());
 
-router.post("/question/:questionId", addReponseToQuestion);
+router.post("/questions/:questionId/add", addReponseToQuestion);
 router.get("/getAll", getAllReponses);
 router.get("/:id", getReponseById);
 router.put("/:id", updateReponse);
 router.delete("/:id", deleteReponse);
-router.get("/question/:questionId", getReponsesByQuestionId);
+router.get("/questions/:questionId", getReponsesByQuestionId);
 
 module.exports = router;

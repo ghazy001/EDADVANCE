@@ -12,6 +12,8 @@ const { generateZoomMeeting } = require("./zoom.service"); // From collage app.j
 const Course = require("./models/Course"); // Import Course model
 
 const config = require("./config/dbconnexion.json");
+const path = require("path");
+
 
 // Database Connection
 mongoose
@@ -29,6 +31,7 @@ const questionRoutes = require("./routes/Questions.js");
 const reponseRoutes = require("./routes/Response.js");
 const quizRoutes = require("./routes/Quiz.js");
 const scoreQuizRoutes = require("./routes/ScoreQuiz.js");
+const EventRoutes = require("./routes/event.js");
 
 const app = express();
 
@@ -188,17 +191,17 @@ app.get("/github/courses-by-repo-language/:repoName", async (req, res) => {
       },
     });
 
-    const programingLanguage = response.data.language ? response.data.language.toLowerCase() : null;
+    const programmingLanguage = response.data.language ? response.data.language.toLowerCase() : null;
     let courses = [];
-    if (programingLanguage) {
-      if (programingLanguage === "javascript") {
-        courses = await Course.find({ programingLanguage: "javascript" });
-      } else if (programingLanguage === "php") {
-        courses = await Course.find({ programingLanguage: "php" });
-      } else if (programingLanguage === "css") {
-        courses = await Course.find({ programingLanguage: "css" });
+    if (programmingLanguage) {
+      if (programmingLanguage === "javascript") {
+        courses = await Course.find({ programmingLanguage: "javascript" });
+      } else if (programmingLanguage === "php") {
+        courses = await Course.find({ programmingLanguage: "php" });
+      } else if (programmingLanguage === "css") {
+        courses = await Course.find({ programmingLanguage: "css" });
       } else {
-        courses = await Course.find({ programingLanguage });
+        courses = await Course.find({ programmingLanguage });
       }
     }
 
@@ -243,6 +246,8 @@ app.get("/terms", (req, res) => {
 
 // Serve static files from 'uploads' folder
 app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 // Routes
 app.use("/user", UserRoutes);
@@ -250,8 +255,10 @@ app.use("/course", CourseRoutes);
 app.use("/chatbot", ChatbotRoutes);
 app.use("/questions", questionRoutes);
 app.use("/responses", reponseRoutes);
-app.use("/quizzes", quizRoutes);
+app.use("/quiz", quizRoutes);
 app.use("/scoreQuizzes", scoreQuizRoutes);
+app.use("/event", EventRoutes);
+
 
 // Create HTTP server and start listening
 const server = http.createServer(app);

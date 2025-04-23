@@ -1,210 +1,244 @@
-require('dotenv').config();
 const User = require("../models/User");
 const UserVerification = require("../models/UserVerification");
-const UserOTPVerification = require("../models/UserOTPVerification"); 
-const { google } = require('googleapis');
-const crypto = require('crypto');
+const UserOTPVerification = require("../models/UserOTPVerification");
+const { google } = require("googleapis");
+const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
-const path = require('path');
+const path = require("path");
 const axios = require("axios");
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 
-
-/*
-
-async function add(req, res) {
-    try {
-        const { name, email, password, role } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ name, email, password: hashedPassword, role });
-        await newUser.save();
-        res.status(201).json({ message: 'User created successfully', user: newUser });
-      } catch (err) {
-        res.status(400).json({ error: err.message });
-      }
-}
-
-*/
-
-//add tebda 
-async function add(req, res) {
-  let { name, email, password, recaptchaToken } = req.body;
-  name = name.trim();
-  email = email.trim();
-  password = password.trim();
-
-  // Valider le token reCAPTCHA
-  try {
-      const recaptchaResponse = await axios.post(
-          "https://www.google.com/recaptcha/api/siteverify",
-          null,
-          {
-              params: {
-                  secret: process.env.RECAPTCHA_SECRET_KEY, // Remplace par ton Secret Key dans .env
-                  response: recaptchaToken,
-              },
-          }
-      );
-
-      const { success, score } = recaptchaResponse.data;
-      if (!success || score < 0.5) { // Ajuste le seuil selon tes besoins
-          return res.json({
-              status: "FAILED",
-              message: "Vérification reCAPTCHA échouée",
-          });
-      }
-  } catch (error) {
-      console.error("Erreur reCAPTCHA:", error);
-      return res.json({
-          status: "FAILED",
-          message: "Erreur lors de la vérification reCAPTCHA",
-      });
-  }
-
-  // Continuer avec la logique existante
-  User.findOne({ email })
-      .then((existingUser) => {
-          if (existingUser) {
-              return res.json({ status: "FAILED", message: "Email already exists" });
-          }
-
-          bcrypt
-              .hash(password, 10)
-              .then((hashedPassword) => {
-                  const newUser = new User({
-                      name,
-                      email,
-                      password: hashedPassword,
-                      creationDate: new Date(),
-                      verified: false,
-                  });
-
-                  newUser
-                      .save()
-                      .then((result) => {
-                          sendVerificationEmail(result, res);
-                      })
-                      .catch((err) => {
-                          console.error("Error saving user:", err);
-                          res.json({
-                              status: "FAILED",
-                              message: "Error saving user account!",
-                          });
-                      });
-              })
-              .catch((err) => {
-                  console.error("Error hashing password:", err);
-                  res.json({ status: "FAILED", message: "Error hashing password!" });
-              });
-      })
-      .catch((err) => {
-          console.error("Error finding user:", err);
-          res.json({ status: "FAILED", message: "Error checking user existence!" });
-      });
-}
-
-
-async function getAll(req, res) {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    } catch (err) {
-        console.error("Error fetching users:", err);
-        res.status(500).json({ error: err.message });
-    }
-}
-
-async function getById(req, res) {
-    try {
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ error: "Invalid User ID format" });
-        }
-        const user = await User.findById(req.params.id);
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
-
-async function getByName(req, res) {
-    try {
-        const user = await User.findOne({ name: req.params.name });
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
-
-async function update(req, res) {
-    try {
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ error: "Invalid User ID format" });
-        }
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-        if (!updatedUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
-        res.status(200).json({ message: "User updated successfully", updatedUser });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-}
-
-async function deleteUser(req, res) {
-    try {
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ error: "Invalid User ID format" });
-        }
-        const deletedUser = await User.findByIdAndDelete(req.params.id);
-        if (!deletedUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
-        res.status(200).json({ message: "User deleted successfully" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
-
-async function deleteAll(req, res) {
-    try {
-        const result = await User.deleteMany({});
-        res.status(200).json({ message: `${result.deletedCount} users deleted successfully` });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
-
-
-
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
-    secure: false,
-    tls: {
-        rejectUnauthorized: false,
-    },
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  secure: false,
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
-
-
 
 transporter.verify((error, success) => {
   if (error) console.log(error);
   else console.log("Ready to send emails");
 });
 
+// Add user with default role
+async function add(req, res) {
+  let { name, email, password, recaptchaToken, role } = req.body;
+  name = name.trim();
+  email = email.trim();
+  password = password.trim();
+  role = role || "user"; // Default to user if not specified
 
+  // Validate role
+  if (!["admin", "instructor", "user"].includes(role)) {
+    return res.json({ status: "FAILED", message: "Invalid role specified" });
+  }
+
+  // // Validate reCAPTCHA
+  // try {
+  //   const recaptchaResponse = await axios.post(
+  //     "https://www.google.com/recaptcha/api/siteverify",
+  //     null,
+  //     {
+  //       params: {
+  //         secret: process.env.RECAPTCHA_SECRET_KEY,
+  //         response: recaptchaToken,
+  //       },
+  //     }
+  //   );
+
+  //   const { success, score } = recaptchaResponse.data;
+  //   if (!success || score < 0.5) {
+  //     return res.json({ status: "FAILED", message: "reCAPTCHA verification failed" });
+  //   }
+  // } catch (error) {
+  //   console.error("reCAPTCHA error:", error);
+  //   return res.json({ status: "FAILED", message: "Error verifying reCAPTCHA" });
+  // }
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.json({ status: "FAILED", message: "Email already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+      creationDate: new Date(),
+      verified: false,
+    });
+
+    const result = await newUser.save();
+    sendVerificationEmail(result, res);
+  } catch (err) {
+    console.error("Error saving user:", err);
+    res.json({ status: "FAILED", message: "Error creating user account!" });
+  }
+}
+
+// Signin with session creation
+async function signin(req, res) {
+  let { email, password } = req.body;
+  email = email.trim();
+  password = password.trim();
+
+  if (!email || !password) {
+    return res.json({ status: "FAILED", message: "Empty credentials supplied!" });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.json({ status: "FAILED", message: "Invalid credentials entered!" });
+    }
+
+    // if (!user.verified) {
+    //   return res.json({ status: "FAILED", message: "Email not verified. Please verify your email." });
+    // }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.json({ status: "FAILED", message: "Invalid password entered!" });
+    }
+
+    // Regenerate session to prevent fixation
+    req.session.regenerate((err) => {
+      if (err) {
+        return res.json({ status: "FAILED", message: "Session creation error" });
+      }
+
+      // Store user info in session
+      req.session.userId = user._id;
+      req.session.role = user.role;
+
+      // Send OTP for 2FA
+      sendOTPVerificationEmail(user, res);
+    });
+  } catch (error) {
+    console.error(`Login failed for ${email}: ${error.message}`);
+    res.json({ status: "FAILED", message: error.message });
+  }
+}
+
+// Logout
+async function logout(req, res) {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Logout failed" });
+    }
+    res.clearCookie("connect.sid");
+    res.json({ message: "Logged out successfully" });
+  });
+}
+
+// Refresh session
+async function refreshSession(req, res) {
+  if (!req.session.userId) {
+    return res.status(401).json({ message: "No active session" });
+  }
+
+  req.session.touch();
+  res.json({ message: "Session refreshed" });
+}
+
+// Get all users
+async function getAll(req, res) {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
+// Get user by ID
+async function getById(req, res) {
+  try {
+    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ error: "Invalid User ID format" });
+    }
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+// Get user by name
+async function getByName(req, res) {
+  try {
+    const user = await User.findOne({ name: req.params.name });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+// Update user
+async function update(req, res) {
+  try {
+    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ error: "Invalid User ID format" });
+    }
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json({ message: "User updated successfully", updatedUser });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
+
+// Delete user
+async function deleteUser(req, res) {
+  try {
+    if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ error: "Invalid User ID format" });
+    }
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+// Delete all users
+async function deleteAll(req, res) {
+  try {
+    const result = await User.deleteMany({});
+    res.status(200).json({ message: `${result.deletedCount} users deleted successfully` });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+// Forgot password
 async function forgotPassword(req, res) {
   const { email } = req.body;
   try {
@@ -213,16 +247,12 @@ async function forgotPassword(req, res) {
       return res.status(404).send("Email not found");
     }
 
-    // Generate reset token (valid for 1 hour)
     const token = crypto.randomBytes(20).toString("hex");
     user.resetToken = token;
     user.resetTokenExpiration = Date.now() + 3600000; // 1 hour
     await user.save();
 
-    // Update the link to point to your React app
-    // const resetLink = `${process.env.FRONTEND_URL}/reset-password/${token}`; // Adjust the URL/port as needed
-
-    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${token}`; // Adjust the URL/port as needed
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${token}`;
 
     const mailOptions = {
       from: process.env.EMAIL_USER || "ghazysaoudi007@gmail.com",
@@ -244,38 +274,31 @@ async function forgotPassword(req, res) {
   }
 }
 
-
-
-
-
-  // Reset Password: update the user's password
-  async function resetPassword(req, res) {
-    const { token, password, confirmPassword } = req.body;
-    if (password !== confirmPassword) {
-      return res.status(400).send("Passwords do not match");
-    }
-    try {
-      const user = await User.findOne({
-        resetToken: token,
-        resetTokenExpiration: { $gt: Date.now() },
-      });
-      if (!user) {
-        return res.status(404).send("Invalid or expired token");
-      }
-      // Hash the new password and update user
-      user.password = await bcrypt.hash(password, 10);
-      user.resetToken = undefined;
-      user.resetTokenExpiration = undefined;
-      await user.save();
-      res.status(200).send("Password updated successfully");
-    } catch (error) {
-      res.status(500).send("Server error");
-    }
+// Reset password
+async function resetPassword(req, res) {
+  const { token, password, confirmPassword } = req.body;
+  if (password !== confirmPassword) {
+    return res.status(400).send("Passwords do not match");
   }
+  try {
+    const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+    });
+    if (!user) {
+      return res.status(404).send("Invalid or expired token");
+    }
+    user.password = await bcrypt.hash(password, 10);
+    user.resetToken = undefined;
+    user.resetTokenExpiration = undefined;
+    await user.save();
+    res.status(200).send("Password updated successfully");
+  } catch (error) {
+    res.status(500).send("Server error");
+  }
+}
 
-
-
-
+// Face login
 async function faceLogin(req, res) {
   const { facialId } = req.body;
 
@@ -290,13 +313,18 @@ async function faceLogin(req, res) {
     }
 
     req.session.userId = user._id;
-    return res.json({ message: "Login successful", user: { id: user._id, name: user.name, email: user.email } });
+    req.session.role = user.role;
+    return res.json({
+      message: "Login successful",
+      user: { id: user._id, name: user.name, email: user.email, role: user.role },
+    });
   } catch (err) {
     console.error("Face login error:", err);
     return res.status(500).json({ message: "Server error during login" });
   }
 }
 
+// Register face
 async function registerFace(req, res) {
   const { facialId, name, email } = req.body;
 
@@ -319,28 +347,24 @@ async function registerFace(req, res) {
     await user.save();
 
     req.session.userId = user._id;
-    return res.json({ message: "Registration successful", user: { id: user._id, name: user.name, email: user.email } });
+    req.session.role = user.role;
+    return res.json({
+      message: "Registration successful",
+      user: { id: user._id, name: user.name, email: user.email, role: user.role },
+    });
   } catch (err) {
     console.error("Face registration error:", err);
     return res.status(500).json({ message: "Server error during registration" });
   }
 }
 
-
-
-
-
-// ✅ Envoyer email de vérification (original) by bassem 
+// Send verification email
 const sendVerificationEmail = ({ _id, email }, res) => {
   const uniqueString = uuidv4() + _id;
   const currentUrl = process.env.FRONTEND_URL;
 
+  const verificationUrl = `${currentUrl}/courses`;
 
-  const verificationUrl = `${currentUrl}/courses`; 
-
-  
-
-   // href="${currentUrl}/courses/${_id}/${uniqueString}"
   const mailOptions = {
     from: process.env.AUTH_EMAIL,
     to: email,
@@ -371,8 +395,7 @@ const sendVerificationEmail = ({ _id, email }, res) => {
     });
 };
 
-
-// ✅ Envoyer OTP email de vérification (nouveau)
+// Send OTP verification email
 const sendOTPVerificationEmail = async ({ _id, email }, res) => {
   try {
     const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
@@ -408,24 +431,20 @@ const sendOTPVerificationEmail = async ({ _id, email }, res) => {
   }
 };
 
-
-// ✅ Vérifier OTP
+// In the verifyOTP function
 const verifyOTP = async (req, res) => {
   try {
     let { userId, otp } = req.body;
     if (!userId || !otp) {
-      throw Error("Empty otp details are not allowed");
+      throw Error("Empty OTP details are not allowed");
     }
 
     const UserOTPVerificationRecords = await UserOTPVerification.find({ userId });
     if (UserOTPVerificationRecords.length <= 0) {
-      throw new Error(
-        "Account record doesn't exist or has been verified already. Please sign up or log in."
-      );
+      throw new Error("Account record doesn't exist or has been verified already.");
     }
 
-    const { expiresAt } = UserOTPVerificationRecords[0];
-    const hashedOTP = UserOTPVerificationRecords[0].otp;
+    const { expiresAt, otp: hashedOTP } = UserOTPVerificationRecords[0];
 
     if (expiresAt < Date.now()) {
       await UserOTPVerification.deleteMany({ userId });
@@ -437,11 +456,35 @@ const verifyOTP = async (req, res) => {
       throw new Error("Invalid code passed. Check your inbox.");
     }
 
+    // Update user verification status
     await User.updateOne({ _id: userId }, { verified: true });
     await UserOTPVerification.deleteMany({ userId });
-    res.json({
-      status: "VERIFIED",
-      message: "Your account has been verified successfully.",
+
+    // Get the user
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Create session for both instructor and user roles
+    req.session.regenerate((err) => {
+      if (err) {
+        throw new Error("Session creation error");
+      }
+
+      req.session.userId = user._id;
+      req.session.role = user.role;
+
+      res.json({
+        status: "VERIFIED",
+        message: "Login successful",
+        user: { 
+          id: user._id, 
+          name: user.name, 
+          email: user.email, 
+          role: user.role 
+        },
+      });
     });
   } catch (error) {
     res.json({
@@ -451,7 +494,7 @@ const verifyOTP = async (req, res) => {
   }
 };
 
-// ✅ Renvoyer OTP
+// Resend OTP
 const resendOTPVerificationCode = async (req, res) => {
   try {
     let { userId, email } = req.body;
@@ -468,56 +511,19 @@ const resendOTPVerificationCode = async (req, res) => {
     });
   }
 };
-  
 
-
-// ✅ Signin
-const signin = async (req, res) => {
-  let { email, password } = req.body;
-  email = email.trim();
-  password = password.trim();
-
-  if (!email || !password) {
-    return res.json({ status: "FAILED", message: "Empty credentials supplied!" });
-  }
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.json({ status: "FAILED", message: "Invalid credentials entered!" });
-    }
-
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.json({ status: "FAILED", message: "Invalid password entered!" });
-    }
-
-    await sendOTPVerificationEmail(user, res);
-    
-  } catch (error) {
-    res.json({ status: "FAILED", message: error.message });
-  }
-};
-
-
-
-// ✅ Vérifier l'email (original)
+// Verify email
 const verifyEmail = (req, res) => {
   const { userId, uniqueString } = req.params;
 
   UserVerification.findOne({ userId }).then((result) => {
-    if (!result)
-      return res.redirect(`${process.env.FRONTEND_URL}/team`); // res.redirect(`/user/verified?error=true&message=Invalid link`);
+    if (!result) return res.redirect(`${process.env.FRONTEND_URL}/team`);
 
     bcrypt.compare(uniqueString, result.uniqueString).then((match) => {
-      if (!match)
-        return res.redirect(`${process.env.FRONTEND_URL}/team`);/*res.redirect(
-          `/user/verified?error=true&message=Invalid verification`
-        );*/ 
+      if (!match) return res.redirect(`${process.env.FRONTEND_URL}/team`);
 
       User.updateOne({ _id: userId }, { verified: true }).then(() => {
         UserVerification.deleteOne({ userId }).then(() => {
-          //res.sendFile(path.join(__dirname, "../views/verified.html"));
           res.redirect(`${process.env.FRONTEND_URL}/team`);
         });
       });
@@ -525,17 +531,107 @@ const verifyEmail = (req, res) => {
   });
 };
 
-
-// ✅ Page vérifiée
+// Verified page
 const verifiedPage = (req, res) => {
-  //res.sendFile(path.join(__dirname, "../views/verified.html"));
   res.redirect(`${process.env.FRONTEND_URL}/team`);
 };
 
+// Get user profile
+const getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
 
- 
-// HTML 
+// Update user progress
+const updateUserProgress = async (req, res) => {
+  try {
+    const { moduleId, moduleName } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $push: { completedModules: { moduleId, moduleName } } },
+      { new: true }
+    );
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update user progress" });
+  }
+};
 
+// Create user profile
+const createUserProfile = async (req, res) => {
+  const { name, email, password, role, level, completedModules } = req.body;
+
+  try {
+    if (!name || !email || !password || !role || !level) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    if (!["admin", "instructor", "user"].includes(role)) {
+      return res.status(400).json({ error: "Invalid role specified" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ name, email, password: hashedPassword, role, level, completedModules });
+    await user.save();
+
+    res.status(201).json(user);
+  } catch (error) {
+    console.error("Error creating user profile:", error);
+    res.status(400).json({ error: "Failed to create user profile" });
+  }
+};
+
+// Google login callback
+const googleLoginCallback = async (req, res) => {
+  try {
+    const { token } = req.query;
+    const response = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const { sub: googleId, email, name } = response.data;
+    let user = await User.findOne({ googleId });
+
+    if (!user) {
+      user = new User({ name, email, googleId, role: "user", verified: true });
+      await user.save();
+    }
+
+    req.session.userId = user._id;
+    req.session.role = user.role;
+
+    const jwtToken = jwt.sign(
+      { userId: user._id, email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+    res.redirect(`${process.env.FRONTEND_URL}/login?token=${jwtToken}`);
+  } catch (error) {
+    res.redirect(`${process.env.FRONTEND_URL}/login?error=${error.message}`);
+  }
+};
+
+// Get rankings
+async function getRankings(req, res) {
+  try {
+    const users = await User.find()
+      .sort({ totalScore: -1 })
+      .limit(6)
+      .select("name totalScore spots updates profilePicture");
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error fetching user rankings:", error);
+    res.status(500).json({ error: "Error fetching user rankings" });
+  }
+}
+
+// HTML Templates
 const emailVerificationTemplate = (verificationUrl) => `
   <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
     <h2 style="color: #007bff;">✅ Email Verification</h2>
@@ -553,7 +649,6 @@ const emailVerificationTemplate = (verificationUrl) => `
     <p><strong>The Support Team</strong></p>
   </div>
 `;
-
 
 const passwordResetTemplate = (resetLink) => `
   <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
@@ -590,101 +685,92 @@ const otpVerificationTemplate = (otp) => `
 
 
 
-// User Profile and Progress
-const getUserProfile = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ error: "User not found" });
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ error: "Server error" });
-  }
-};
 
-const updateUserProgress = async (req, res) => {
+async function getCurrentUser(req, res){
+  
   try {
-    const { moduleId, moduleName } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { $push: { completedModules: { moduleId, moduleName } } },
-      { new: true }
-    );
-    if (!user) return res.status(404).json({ error: "User not found" });
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to update user progress" });
-  }
-};
-
-const createUserProfile = async (req, res) => {
-  const { name, email, password, role, level, completedModules } = req.body;
-
-  try {
-    if (!name || !email || !password || !role || !level) {
-      return res.status(400).json({ error: "All fields are required" });
+    if (!req.session.userId) {
+      return res.status(401).json({ message: "No active session" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, email, password: hashedPassword, role, level, completedModules });
-    await user.save();
-
-    res.status(201).json(user);
-  } catch (error) {
-    console.error("Error creating user profile:", error);
-    res.status(400).json({ error: "Failed to create user profile" });
-  }
-};
-
-// Social Login (Google Example)
-const googleLoginCallback = async (req, res) => {
-  try {
-    const { token } = req.query;
-    const response = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const { sub: googleId, email, name } = response.data;
-    let user = await User.findOne({ googleId });
+    const user = await User.findById(req.session.userId);
 
     if (!user) {
-      user = new User({ name, email, googleId, role: "user", verified: true });
-      await user.save();
+      return res.status(404).json({ message: "User not found" });
     }
 
-    const jwtToken = jwt.sign({ userId: user._id, email: user.email, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
+    res.json({ 
+      id: user._id, 
+      name: user.name, 
+      email: user.email, 
+      role: user.role,
+      profilePicture: user.profilePicture || null 
     });
-    res.redirect(`${process.env.FRONTEND_URL}/login?token=${jwtToken}`);
   } catch (error) {
-    res.redirect(`${process.env.FRONTEND_URL}/login?error=${error.message}`);
-  }
-};
-  // New Endpoint for User Rankings
-async function getRankings(req, res) {
-  try {
-    const users = await User.find()
-      .sort({ totalScore: -1 }) // Sort by totalScore in descending order
-      .limit(6) // Limit to top 6 users
-      .select("name totalScore spots updates profilePicture"); // Select only the fields needed for the leaderboard
-    res.status(200).json(users);
-  } catch (error) {
-    console.error("Error fetching user rankings:", error);
-    res.status(500).json({ error: "Error fetching user rankings" });
+    console.error("Error fetching current user:", error);
+    res.status(500).json({ message: "Server error" });
   }
 }
 
 
 
-module.exports = { add, getAll, getById, getByName, update, deleteUser, deleteAll,resetPassword,forgotPassword,faceLogin,registerFace,
+async function updateProfileImage(req, res) {
+  try {
+    const userId = req.params.id; // Get user ID from URL
+    console.log("File received:", req.file); // 👈 debug log
+
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Delete the old image if it's not the default
+    if (user.profilePicture !== "default.jpg") {
+      const oldPath = path.join(__dirname, "../uploads", user.profilePicture);
+      if (fs.existsSync(oldPath)) {
+        fs.unlinkSync(oldPath);
+      }
+    }
+
+    // Save new image name to DB
+    user.profilePicture = req.file.filename;
+    await user.save();
+
+    res.status(200).json({ message: "Profile image updated", image: user.profilePicture });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
+
+
+module.exports = {
+  add,
+  getAll,
+  getById,
+  getByName,
+  update,
+  deleteUser,
+  deleteAll,
+  resetPassword,
+  forgotPassword,
+  faceLogin,
+  registerFace,
   verifyEmail,
   verifiedPage,
-  sendOTPVerificationEmail, 
-  verifyOTP,                
+  sendOTPVerificationEmail,
+  verifyOTP,
   resendOTPVerificationCode,
   signin,
+  logout,
+  refreshSession,
   getUserProfile,
   updateUserProgress,
   createUserProfile,
   googleLoginCallback,
   getRankings,
+  getCurrentUser,
+  updateProfileImage
 };
