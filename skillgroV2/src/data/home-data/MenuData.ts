@@ -88,7 +88,7 @@ const menu_data: MenuItem[] = [
                 title: "Our Events",
                 dropdown: true,
                 mega_menus: [
-                    { link: "/events", title: "Our Events", },
+                    { link: "/event", title: "Our Events", },
                     { link: "/events-details", title: "Event Details", },
                 ]
             },

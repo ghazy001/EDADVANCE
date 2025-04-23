@@ -3,6 +3,7 @@ import courseSlice from './features/courseSlice';
 import cartSlice from './features/cartSlice';
 import productSlice from './features/productSlice';
 import wishlistSlice from './features/wishlistSlice';
+import eventReducer from './features/eventSlice';
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         products: productSlice,
         cart: cartSlice,
         wishlist: wishlistSlice,
+        events: eventReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,

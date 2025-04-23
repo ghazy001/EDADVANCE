@@ -1,53 +1,201 @@
-import { Link } from "react-router-dom"
-import wishlist_data from "../../../data/dashboard-data/InstructorWishlistData"
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
-const InstructorWishlistContent = () => {
-   return (
-      <div className="col-lg-9">
-         <div className="dashboard__content-wrap dashboard__content-wrap-two">
-            <div className="dashboard__content-title">
-               <h4 className="title">Wishlist</h4>
-            </div>
-            <div className="row">
-               {wishlist_data.map((item) => (
-                  <div key={item.id} className="col-xl-4 col-md-6">
-                     <div className="courses__item courses__item-two shine__animate-item">
-                        <div className="courses__item-thumb courses__item-thumb-two">
-                           <Link to="/course-details" className="shine__animate-link">
-                              <img src={item.thumb} alt="img" />
-                           </Link>
-                        </div>
-                        <div className="courses__item-content courses__item-content-two">
-                           <ul className="courses__item-meta list-wrap">
-                              <li className="courses__item-tag">
-                                 <Link to="/course">{item.tag}</Link>
-                              </li>
-                              <li className="price"><del>${item.old_price}.00</del>${item.price}.00</li>
-                           </ul>
-                           <h5 className="title"><Link to="/course-details">{item.title}</Link></h5>
-                           <div className="courses__item-content-bottom">
-                              <div className="author-two">
-                                 <Link to="/instructor-details"><img src={item.avatar_thumb} alt="img" />{item.avatar_name}</Link>
-                              </div>
-                              <div className="avg-rating">
-                                 <i className="fas fa-star"></i> {item.review}
-                              </div>
-                           </div>
-                        </div>
-                        <div className="courses__item-bottom-two">
-                           <ul className="list-wrap">
-                              <li><i className="flaticon-book"></i>{item.book}</li>
-                              <li><i className="flaticon-clock"></i>{item.time}</li>
-                              <li><i className="flaticon-mortarboard"></i>{item.mortarboard}</li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               ))}
-            </div>
-         </div>
-      </div>
-   )
-}
+const BASE_URL = "http://localhost:3000"; // Change this to your API URL
 
-export default InstructorWishlistContent
+const EventManagement = () => {
+    const [events, setEvents] = useState([]);
+    const [activeTab, setActiveTab] = useState(0);
+    const [eventFormData, setEventFormData] = useState({
+        id: '',
+        title: '',
+        date: '',
+        location: '',
+        description: '',
+        category: '',
+    });
+
+    const fetchEvents = async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/event/getAll`);
+            const result = await response.json();
+            if (response.ok) {
+                setEvents(result);
+            } else {
+                toast.error('Failed to fetch events');
+            }
+        } catch (error) {
+            console.error('Error fetching events:', error);
+            toast.error('Error fetching events');
+        }
+    };
+
+    useEffect(() => {
+        if (activeTab === 0) {
+            fetchEvents();
+        }
+    }, [activeTab]);
+
+    const handleTabClick = (index) => {
+        setActiveTab(index);
+    };
+
+    const handleInputChange = (e) => {
+        setEventFormData({ ...eventFormData, [e.target.name]: e.target.value });
+    };
+
+    const handleAddEvent = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`${BASE_URL}/event/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(eventFormData),
+            });
+            const result = await res.json();
+
+            if (res.ok) {
+                toast.success('Event added successfully');
+                setEventFormData({
+                    id: '',
+                    title: '',
+                    date: '',
+                    location: '',
+                    description: '',
+                    category: '',
+                });
+                fetchEvents(); // Refresh the event list
+            } else {
+                toast.error('Failed to add event');
+            }
+        } catch (err) {
+            toast.error('Error adding event');
+            console.error('Error:', err);
+        }
+    };
+
+    const handleDeleteEvent = async (id) => {
+        try {
+            const res = await fetch(`${BASE_URL}/event/delete/${id}`, {
+                method: 'DELETE',
+            });
+            if (res.ok) {
+                toast.success('Event deleted successfully');
+                fetchEvents(); // Refresh the event list
+            } else {
+                toast.error('Failed to delete event');
+            }
+        } catch (error) {
+            toast.error('Error deleting event');
+            console.error('Error:', error);
+        }
+    };
+
+    const handleUpdateEvent = async (id) => {
+        try {
+            const res = await fetch(`${BASE_URL}/event/update/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(eventFormData),
+            });
+            if (res.ok) {
+                toast.success('Event updated successfully');
+                fetchEvents(); // Refresh the event list
+            } else {
+                toast.error('Failed to update event');
+            }
+        } catch (err) {
+            toast.error('Error updating event');
+            console.error('Error:', err);
+        }
+    };
+
+    return (
+        <div>
+            <div>
+                <button onClick={() => handleTabClick(0)}>View Events</button>
+                <button onClick={() => handleTabClick(1)}>Add Event</button>
+            </div>
+
+            {activeTab === 0 && (
+                <div>
+                    <h2>Events List</h2>
+                    <div>
+                        {events.map((event) => (
+                            <div key={event.id}>
+                                <h3>{event.title}</h3>
+                                <p>{event.date} - {event.location}</p>
+                                <p>{event.description}</p>
+                                <button onClick={() => handleUpdateEvent(event.id)}>Update</button>
+                                <button onClick={() => handleDeleteEvent(event.id)}>Delete</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {activeTab === 1 && (
+                <div>
+                    <h2>Add New Event</h2>
+                    <form onSubmit={handleAddEvent}>
+                        <div>
+                            <label>Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={eventFormData.title}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Date</label>
+                            <input
+                                type="date"
+                                name="date"
+                                value={eventFormData.date}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Location</label>
+                            <input
+                                type="text"
+                                name="location"
+                                value={eventFormData.location}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <textarea
+                                name="description"
+                                value={eventFormData.description}
+                                onChange={handleInputChange}
+                                required
+                            ></textarea>
+                        </div>
+                        <div>
+                            <label>Category</label>
+                            <input
+                                type="text"
+                                name="category"
+                                value={eventFormData.category}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <button type="submit">Add Event</button>
+                    </form>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default EventManagement;

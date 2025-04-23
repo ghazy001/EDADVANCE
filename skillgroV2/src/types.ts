@@ -1,30 +1,6 @@
-export interface Reponse {
-  _id?: number;
-  texte: string;
-  isCorrect: boolean;
-  answernum: string; // "A", "B", "C", or "D"
-  questionId?: number;
-}
 
-export interface Question {
-  _id: string;
-  contenu: string;
-  score: number;
-  correctAnswer: string;
-  quiz: string;
-  reponses: Reponse[]; // Remove | string[] to enforce populated objects
-  selectedAnswer?: string;
-}
 
-export interface Quiz {
-  _id: string;
-  
-  titre: string;
-  description?: string;
-  questions: Question[];
-  scores: string[];
-  course: string;
-}
+
   
 export interface Course {
   _id: string;                     // MongoDB / frontend ID
@@ -59,3 +35,40 @@ export interface Course {
     score: number;
     isTimedOut: boolean;
   }
+
+
+
+
+
+
+
+
+
+
+export interface Reponse {
+  _id: string;
+  texte: string;
+  answernum: number;
+}
+
+export interface Question {
+  _id: string;
+  contenu: string;
+  reponses: Reponse[];
+  correctAnswer: number;
+  score: number;
+}
+
+export interface Quiz {
+  _id: string;
+  titre: string;
+  description: string;
+  cours?: string;
+  questions: Question[];
+  scores?: {
+    userId: string;
+    score: number;
+    submittedAt: Date;
+    isTimedOut: boolean;
+  }[];
+}

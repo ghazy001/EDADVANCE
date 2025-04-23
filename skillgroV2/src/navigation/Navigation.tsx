@@ -13,13 +13,13 @@ import CourseDetails from '../pages/CourseDetails';
 import About from '../pages/About';
 import Instructor from '../pages/Instructor';
 import InstructorDetails from '../pages/InstructorDetails';
-import Event from '../pages/Event';
+import Event from '../components/inner-pages/events/event/index.tsx';
 import EventDetails from '../pages/EventDetails';
 import Shop from '../pages/Shop';
 import ShopDetails from '../pages/ShopDetails';
 import Cart from '../pages/Cart';
 import Wishlist from '../pages/Wishlist';
-import Quiz from '../components/Quiz/Quiz';
+import QuizForm from '../dashboard/instructor-dashboard/instructor-enrolled-courses/AddQuiz';
 import QuizComponent from '../components/Quiz/Quiz.tsx';
 import CheckOut from '../pages/CheckOut';
 import Blog from '../pages/Blog';
@@ -67,7 +67,11 @@ const AppNavigation = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home-two" element={<HomeTwo />} />
         <Route path="/home-three" element={<HomeThree />} />
-        <Route path="/Quiz" element={<Quiz />} />
+
+          {/* Define the route for the add quiz page */}
+          <Route path="/AddQuiz/:courseId" element={<QuizForm />} />
+          {/* Other routes */}
+
         <Route path="/quiz/:id" element={<QuizComponent />} />
         <Route path="/home-four" element={<HomeFour />} />
         <Route path="/home-five" element={<HomeFive />} />
@@ -80,8 +84,8 @@ const AppNavigation = () => {
         <Route path="/about-us" element={<About />} />
         <Route path="/instructors" element={<Instructor />} />
         <Route path="/instructor-details" element={<InstructorDetails />} />
-        <Route path="/events" element={<Event />} />
-        <Route path="/events-details" element={<EventDetails />} />
+        <Route path="/event" element={<Event />} />
+        <Route path="/events-details/:id" element={<EventDetails />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop-details" element={<ShopDetails />} />
         <Route path="/cart" element={<Cart />} />
@@ -123,20 +127,7 @@ const AppNavigation = () => {
         <Route path="/ClassroomCourses" element={<ClassroomCourses/>} />
         <Route path="/Chat" element={<GlobalChat/>} />
         <Route path="/course-details/:id" element={<CourseDetails />} />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <Route path="/lesson/:id" element={<Lesson />} />
 
 
         {/* <Route path="/blog-details/:id" element={<DynamicBlogDeatils />} /> */}

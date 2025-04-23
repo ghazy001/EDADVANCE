@@ -23,4 +23,4 @@ const InstructorSettingPassword = () => {
    )
 }
 
-export default InstructorSettingPassword
+export default InstructorSettingPassword;

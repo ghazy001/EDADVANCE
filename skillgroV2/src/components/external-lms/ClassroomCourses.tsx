@@ -62,60 +62,66 @@ const ClassroomCourses: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <div className="loading">Loading courses...</div>;
+        return <div className="text-center mt-5">Loading courses...</div>;
     }
 
     if (error) {
         return (
-            <div className="error-message">
-                <p>{error}</p>
-                {error.includes('log in') || error.includes('re-authenticate') ? (
-                    <a href="http://localhost:3000/auth/google" className="login-link">Log in with Google</a>
-                ) : null}
+            <div className="container mt-5 text-center">
+                <div className="alert alert-danger">{error}</div>
+                {(error.includes('log in') || error.includes('re-authenticate')) && (
+                    <a className="btn btn-primary mt-3" href="http://localhost:3000/auth/google">Log in with Google</a>
+                )}
             </div>
         );
     }
 
     return (
-        <div className="classroom-page">
+        <div>
             <HeaderOne />
-            <div className="courses-container">
-                <h2 className="title">Your Google Classroom Courses</h2>
+            <div className="container mt-5">
+                <h2 className="mb-4 text-center">Your Google Classroom Courses</h2>
                 {courses.length === 0 ? (
-                    <p className="no-courses">No courses found.</p>
+                    <p className="text-muted text-center">No courses found.</p>
                 ) : (
-                    <div className="courses-grid">
+                    <div className="row">
                         {courses.map((course) => (
-                            <div key={course.id} className="course-card">
-                                <h3 className="course-name">{course.name}</h3>
-                                <p className="course-section"><strong>Section:</strong> {course.section || 'N/A'}</p>
-                                <p className="course-description"><strong>Description:</strong> {course.description}</p>
-                                <p className={`course-state ${course.state === 'ACTIVE' ? 'active' : 'inactive'}`}>
-                                    {course.state}
-                                </p>
+                            <div key={course.id} className="col-md-6 mb-4">
+                                <div className="card h-100 shadow-sm">
+                                    <div className="card-body">
+                                        <h3 className="card-title">{course.name}</h3>
+                                        <p className="card-text">
+                                            <strong>Section:</strong> {course.section || 'N/A'}<br />
+                                            <strong>Description:</strong> {course.description}<br />
+                                            <strong>State:</strong> {course.state}
+                                        </p>
 
-                                {/* Recommended Course Section */}
-                                {course.recommendations && course.recommendations.length > 0 && (
-                                    <div className="recommended-section">
-                                        <h4>You might also like</h4>
-                                        <div className="recommended-items">
-                                            {course.recommendations.map((recommendation, index) => (
-                                                <div key={index} className="recommended-item">
-                                                    <iframe
-                                                        width="200"
-                                                        height="150"
-                                                        src={recommendation.embedUrl}
-                                                        title={recommendation.title}
-                                                        frameBorder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowFullScreen
-                                                    ></iframe>
-                                                    <p className="recommended-title">{recommendation.title}</p>
+                                        {course.recommendations && course.recommendations.length > 0 && (
+                                            <div className="mt-3">
+                                                <h5 className="card-subtitle mb-2 text-muted">You might also like</h5>
+                                                <div className="row">
+                                                    {course.recommendations.map((recommendation, index) => (
+                                                        <div key={index} className="col-6 mb-3">
+                                                            <div className="embed-responsive embed-responsive-16by9 mb-2">
+                                                                <iframe
+                                                                    className="embed-responsive-item"
+                                                                    width="100%"
+                                                                    height="150"
+                                                                    src={recommendation.embedUrl}
+                                                                    title={recommendation.title}
+                                                                    frameBorder="0"
+                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                    allowFullScreen
+                                                                ></iframe>
+                                                            </div>
+                                                            <p className="small text-center">{recommendation.title}</p>
+                                                        </div>
+                                                    ))}
                                                 </div>
-                                            ))}
-                                        </div>
+                                            </div>
+                                        )}
                                     </div>
-                                )}
+                                </div>
                             </div>
                         ))}
                     </div>
