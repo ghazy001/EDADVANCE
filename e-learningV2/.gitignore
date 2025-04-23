@@ -1,11 +1,9 @@
 # dependencies
 /node_modules
 
-
-
 # Secret information
-.env 
+.env
+service-account.json
 
-
-
+# Others
 .qodo
