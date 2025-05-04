@@ -1,0 +1,28 @@
+@use '../utils' as *;
+
+/*=============================
+    - Background color
+===============================*/
+.grey-bg {
+	background: var(--tg-common-color-gray);
+}
+.grey-bg-two {
+	background: var(--tg-common-color-gray-9);
+}
+.white-bg {
+	background: var(--tg-common-color-white);
+}
+.black-bg {
+	background: var(--tg-common-color-black);
+}
+
+.custom-cursor {
+	position: fixed;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: black;
+	transition: transform 0.1s ease, background-color 0.3s ease;
+	z-index: 9999;
+}
+
