@@ -91,7 +91,7 @@ app.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(${process.env.FRONTEND_URL}/courses);
+    res.redirect(`${process.env.FRONTEND_URL}/courses`);
   }
 );
 
@@ -101,7 +101,7 @@ app.get(
   "/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(${process.env.FRONTEND_URL}/courses);
+   res.redirect(`${process.env.FRONTEND_URL}/courses`);
   }
 );
 
@@ -121,7 +121,7 @@ app.get(
   "/auth/linkedin/callback",
   passport.authenticate("linkedin", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(${process.env.FRONTEND_URL}/courses);
+    res.redirect(`${process.env.FRONTEND_URL}/courses`);
   }
 );
 
