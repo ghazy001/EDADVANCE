@@ -55,5 +55,11 @@
   },
  "devDependencies": {
     "jest": "^27.0.0"
-  }
+  },
+"jest": {
+  "collectCoverage": true,
+  "coverageDirectory": "./coverage",
+  "coverageReporters": ["lcov", "text", "cobertura"]
+}
+
 }
