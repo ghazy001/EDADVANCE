@@ -91,7 +91,7 @@ app.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(`${process.env.FRONTEND_URL}/courses`);
+    res.redirect(${process.env.FRONTEND_URL}/courses);
   }
 );
 
@@ -101,7 +101,7 @@ app.get(
   "/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(`${process.env.FRONTEND_URL}/courses`);
+    res.redirect(${process.env.FRONTEND_URL}/courses);
   }
 );
 
@@ -111,7 +111,7 @@ app.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(`${process.env.FRONTEND_URL}/courses`);
+    res.redirect(${process.env.FRONTEND_URL}/courses);
   }
 );
 
@@ -121,7 +121,7 @@ app.get(
   "/auth/linkedin/callback",
   passport.authenticate("linkedin", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(`${process.env.FRONTEND_URL}/courses`);
+    res.redirect(${process.env.FRONTEND_URL}/courses);
   }
 );
 
@@ -154,7 +154,7 @@ app.get("/github/repos", async (req, res) => {
   try {
     const response = await axios.get("https://api.github.com/user/repos", {
       headers: {
-        Authorization: `token ${githubToken}`,
+        Authorization: token ${githubToken},
         Accept: "application/vnd.github.v3+json",
       },
     });
@@ -186,20 +186,20 @@ app.get("/github/courses-by-repo-language/:repoName", async (req, res) => {
   try {
     const allReposResponse = await axios.get("https://api.github.com/user/repos", {
       headers: {
-        Authorization: `token ${githubToken}`,
+        Authorization: token ${githubToken},
         Accept: "application/vnd.github.v3+json",
       },
     });
 
     const repo = allReposResponse.data.find((r) => r.name === repoName);
     if (!repo) {
-      return res.status(404).json({ message: `Repository ${repoName} not found` });
+      return res.status(404).json({ message: Repository ${repoName} not found });
     }
 
     const owner = repo.owner.login;
-    const response = await axios.get(`https://api.github.com/repos/${owner}/${repoName}`, {
+    const response = await axios.get(https://api.github.com/repos/${owner}/${repoName}, {
       headers: {
-        Authorization: `token ${githubToken}`,
+        Authorization: token ${githubToken},
         Accept: "application/vnd.github.v3+json",
       },
     });
@@ -266,7 +266,7 @@ if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "Uploads/"),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+  filename: (req, file, cb) => cb(null, ${Date.now()}-${file.originalname}),
 });
 
 const upload = multer({ storage });
@@ -311,9 +311,7 @@ app.use("/quiz", QuizRoutes);
 app.use("/scoreQuizzes", ScoreQuizRoutes);
 
 // Create HTTP server and start listening
-if (process.env.NODE_ENV !== "test") {
-  const server = http.createServer(app);
-  server.listen(3000, () => console.log("Server running on port 3000"));
-}
+const server = http.createServer(app);
+server.listen(3000, () => console.log("Server running on port 3000"));
 
 module.exports = app;
