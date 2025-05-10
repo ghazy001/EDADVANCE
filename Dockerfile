@@ -1,5 +1,5 @@
 # Use the official Node.js LTS image
-FROM node:18
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
