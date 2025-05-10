@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "node build.js"
+    "build": "echo 'No build step needed for Express app'"
   },
   "author": "",
   "license": "ISC",
