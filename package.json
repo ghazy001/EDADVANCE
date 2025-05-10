@@ -56,8 +56,7 @@
   },
   "devDependencies": {
     "jest": "^27.0.0",
-    "sonarqube-scanner": "^3.3.0",
-    "supertest": "^7.0.0" 
+    "sonarqube-scanner": "^3.3.0"
   },
   "jest": {
     "collectCoverage": true,
