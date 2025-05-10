@@ -56,9 +56,12 @@
   },
   "devDependencies": {
     "jest": "^27.0.0",
-    "sonarqube-scanner": "^3.3.0",
+    "sonarqube-scanner": "^3.3.0"
   },
   "jest": {
+    "testEnvironment": "node",
+    "transform": {},
+    "transformIgnorePatterns": ["/node_modules/"],
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
     "coverageReporters": ["lcov", "text", "cobertura"]
