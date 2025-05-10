@@ -111,7 +111,7 @@ app.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect(${process.env.FRONTEND_URL}/courses);
+    res.redirect(`${process.env.FRONTEND_URL}/courses`);
   }
 );
 
