@@ -48,6 +48,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-linkedin-oauth2": "^2.0.0",
     "pdf-parse": "^1.1.1",
+    "sabella": "file:",
     "socket.io": "^4.8.1",
     "stripe": "^17.7.0",
     "twilio": "^5.5.2",
