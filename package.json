@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "echo 'No build step needed for Express app'"
+    "build": "echo 'No build step needed for Express app'",
+    "sonar": "npx sonarqube-scanner"
   },
   "author": "",
   "license": "ISC",
@@ -54,7 +55,8 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "jest": "^27.0.0"
+    "jest": "^27.0.0",
+    "sonarqube-scanner": "^3.3.0"
   },
   "jest": {
     "collectCoverage": true,
