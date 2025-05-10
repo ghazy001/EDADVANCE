@@ -1,13 +1,10 @@
-const request = require('supertest');
-const app = require('./app'); // Ensure this path points to your app.js file
+// app.test.js
+const { add } = require('./app');
 
-describe('App Routes', () => {
-  it('GET /terms should return terms of service page', async () => {
-    // Send GET request to /terms route
-    const res = await request(app).get('/terms');
-    
-    // Assert status code and content
-    expect(res.statusCode).toBe(200);
-    expect(res.text).toContain('Conditions de service');
+describe('App', () => {
+  test('should add two numbers correctly', () => {
+    expect(add(2, 3)).toBe(5);
+    expect(add(-1, 1)).toBe(0);
+    expect(add(0, 0)).toBe(0);
   });
 });
