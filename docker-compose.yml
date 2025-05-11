@@ -23,7 +23,7 @@ services:
     - LINKEDIN_CLIENT_ID=786vg3pv13kvgo
     - LINKEDIN_CLIENT_SECRET=WPL_AP1.6iJbXjdtuPGHxEow.px0WnA==
     - LINKEDIN_CALLBACK_URL=http://localhost:3000/auth/linkedin/callback
-    - STRIPE_API_KEY=${STRIPE_API_KEY}
+    - STRIPE_SECRET_KEY=sk_test_51QyB0EHxGo95z8CwLgSurtAvdh66SotY6AYuQhI4ev3H6w0ruIB4gWxdB1Ms370krqXkH4tVPN9tlqeDBisNLOoR0089mEufAQ
     depends_on:
       - mongo
 
