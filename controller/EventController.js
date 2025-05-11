@@ -1,4 +1,4 @@
-const Event = require("../models/Event"); // Adjust path as needed
+const Event = require("../models/event"); // Adjust path as needed
 const multer = require("multer");
 const path = require("path");
 
