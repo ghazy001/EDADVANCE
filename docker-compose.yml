@@ -11,8 +11,8 @@ services:
     environment:
     - NODE_ENV=development
     - MONGODB_URI=mongodb://mongo:27017/sabella
-    - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-    - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    - GOOGLE_CLIENT_ID=623631035654-0hveui5sc0ad023pfr574nm9ji13442v.apps.googleusercontent.com
+    - GOOGLE_CLIENT_SECRET=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
     - GOOGLE_CALLBACK_URL=http://localhost:3001/auth/google/callback
     depends_on:
       - mongo
