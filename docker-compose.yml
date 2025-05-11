@@ -14,6 +14,9 @@ services:
     - GOOGLE_CLIENT_ID=623631035654-0hveui5sc0ad023pfr574nm9ji13442v.apps.googleusercontent.com
     - GOOGLE_CLIENT_SECRET=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
     - GOOGLE_CALLBACK_URL=http://localhost:3001/auth/google/callback
+    - FACEBOOK_APP_ID=1287723289184527
+    - FACEBOOK_APP_SECRET=e8d80cd1c2d73d1bda7193e18335789c
+    - FACEBOOK_CALLBACK_URL=http://localhost:3001/auth/facebook/callback
     depends_on:
       - mongo
 
