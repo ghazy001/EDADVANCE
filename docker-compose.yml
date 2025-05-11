@@ -17,6 +17,12 @@ services:
     - FACEBOOK_APP_ID=1287723289184527
     - FACEBOOK_APP_SECRET=e8d80cd1c2d73d1bda7193e18335789c
     - FACEBOOK_CALLBACK_URL=http://localhost:3001/auth/facebook/callback
+    - GITHUB_CLIENT_ID=Ov23li9dFvyC7aO5yfFn
+    - GITHUB_CLIENT_SECRET=2fc83d9bb47448d2e43e49e4def90d67cef8690d
+    - GITHUB_CALLBACK_URL=http://localhost:3000/auth/github/callback
+    - LINKEDIN_CLIENT_ID=786vg3pv13kvgo
+    - LINKEDIN_CLIENT_SECRET=WPL_AP1.6iJbXjdtuPGHxEow.px0WnA==
+    - LINKEDIN_CALLBACK_URL=http://localhost:3000/auth/linkedin/callback
     depends_on:
       - mongo
 
